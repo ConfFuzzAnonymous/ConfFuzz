@@ -1,0 +1,33 @@
+start_time        : 1700618005
+last_update       : 1700618074
+fuzzer_pid        : 167
+cycles_done       : 1
+execs_done        : 230
+execs_per_sec     : 5.12
+paths_total       : 129
+paths_favored     : 46
+paths_found       : 112
+paths_imported    : 0
+max_depth         : 3
+cur_path          : 16
+pending_favs      : 46
+pending_total     : 113
+variable_paths    : 113
+stability         : 38.46%
+bitmap_cvg        : 36.08%
+unique_crashes    : 0
+unique_hangs      : 0
+last_path         : 1700618073
+last_crash        : 0
+last_hang         : 0
+execs_since_crash : 230
+exec_timeout      : 20
+afl_banner        : aaa
+afl_version       : 2.56b
+target_mode       : no_forksrv 
+command_line      : ../afl-fuzz -i crashes -o ../fuzz_output aaa
+slowest_exec_ms   : 0
+syntax error       : 46
+semantic error       : 53
+correct num       : 18
+peak_rss_mb       : not available while afl is running

@@ -1,0 +1,5 @@
+CREATE TABLE v0 ( v1 VARCHAR ( 12 ) ) ;
+ INSERT INTO v0 ( v1 , v1 , v1 ) VALUES ( 45 , 63 , 80 ) , ( 81 ^ -32768 , 'x' ) ;
+ SELECT 2 AS v4 FROM v0 AS v3 , v0 AS v2 NATURAL JOIN v0 NATURAL JOIN v0 ORDER BY NTILE ( ) ;
+ SELECT JSON_ARRAYAGG ( v1 ) FROM v0 , v0 , v0 , v0 ORDER BY v1 * 69 ;
+ 

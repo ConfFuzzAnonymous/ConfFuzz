@@ -1,0 +1,31 @@
+Test cases,Description,Version,Type,ConfFuzz,Squirrel
+"PRAGMA recursive_triggers=true;CREATE TABLE v0 ( v7 INT UNIQUE ON CONFLICT FAIL , v9 INTEGER UNIQUE ON CONFLICT FAIL , v1 INTEGER UNIQUE ON CONFLICT ROLLBACK , v5 INTEGER UNIQUE ON CONFLICT ABORT , v8 INTEGER UNIQUE ON CONFLICT ROLLBACK , v6 INTEGER UNIQUE ON CONFLICT ROLLBACK , v2 UNIQUE ON CONFLICT IGNORE , v4 PRIMARY KEY ON CONFLICT ROLLBACK , v3 UNIQUE ) ;DELETE FROM v0 WHERE v7 MATCH - 2000.100000 ; CREATE TRIGGER x AFTER INSERT ON v0 BEGIN INSERT INTO v0 ( v1 ) VALUES ( 2000 ) ; END ; REPLACE INTO v0 ( v8 ) VALUES ( NULL ) ;","Boolean, whether to enable recursive triggers, is not enabled by default",sqlite 3.39.0,hang,¡Ì,¡Á
+"PRAGMA busy_timeout=2000; PRAGMA page_size=2000; CREATE TABLE v0 ( v1 INTEGER , v3 INTEGER , v2 TEXT , v4 TEXT ) ; INSERT INTO v0 ( v4 ) VALUES ( '1995-03-15' ) ,( 'Ar' ) ,( 'v0' ) ,( 'x' ) ,( 'SM BOX' ) ,( 'v1' ) ,( 'Brand#23' ) ,( '31' ) ,( 'v0' ) ,( 'x' ) ,( 'v0' ) ,( 'v1' ) ,( 'Y' ) ,( 'v1' ) ,( 'v0' ) ,( '%%green%%' ) ,( '31' ) ; SELECT ( randomblob ( 2000 ) ) FROM v0 , v0 AS t , v0 AS x , v0 AS b ;",,sqlite 3.39.0,hang,¡Ì,¡Á
+"PRAGMA threads=1; ; CREATE TABLE v0 ( v2 CHECK( v1 > ( v1 = v2 AND v1 = 'MED BAG' AND v1 IN ( 'LG CASE' , '31' , '%%green%%' , 'v1' ) AND v2 >= v2 ) ) , v1 VARCHAR(80) ) ; INSERT INTO v0 ( v1 ) VALUES ( NULL ) ,( NULL ) ,( NULL ) ,( NULL ) ,( NULL ) ,( NULL ) ,( NULL ) ,( NULL ) ,( NULL ) ,( NULL ) ,( NULL ) ; INSERT INTO v0 SELECT count ( * ) OVER( ) , 10 FROM v0 AS d , v0 AS x , v0 AS b ; SELECT DISTINCT * FROM v0 , v0 AS x , v0 AS b ORDER BY v1 , v2 ASC , v1 DESC ;",,sqlite 3.39.0,hang,¡Ì,¡Á
+"#define SQLITE_LIMIT_COLUMN 2ï¼›CREATE TABLE v0 ( v2 , v1);CREATE INDEX v3 ON v0 ( v1 , v1 , v2 , v1 , v1 , v2 , v2 , v2 , v1 , v2 , v2 , v1 , v2 , v1 , v1 , v1 , v2 , v1 , v1 , v2 , v1 , v2,v1,v1,v2,v1);SELECT * FROM v0 WHERE v2 IN ( 10 , 2 ) AND v1 IN ( 2000 , 1 );",The maximum number of columns in a table definition or in the result set of a SELECT or the maximum number of columns in an index or in an ORDER BY or GROUP BY clause.,sqlite 3.39.0,crash,¡Ì,¡Á
+"CREATE TABLE v0 ( v3 INTEGER , v2 INTEGER , v1 ) ; INSERT INTO v0 ( v3 ) VALUES ( 'v1' ) ,( 'v0' ) ,( 'SM PKG' ) ,( 'v0' ) ,( 'v0' ) ,( 'x' ) ,( 'v1' ) ,( 'Brand#34' ) ,( 'v0' ) ,( 'v1' ) ,( 'x' ) ,( 'v1' ) ,( '17' ) ,( 'GERMANY' ) ,( 'AIR REG' ) ,( '**%s**' ) ,( 'x' ) ; INSERT INTO v0 ( v3 ) VALUES ( 'v0' ) ,( 'MED P' ) ,( 'MED P' ) ,( 'v0' ) ,( '31' ) ,( 'v1' ) ,( 'MED P' ) ,( 'x' ) ,( '31' ) ,( 'a' ) ,( '1995-03-15' ) ,( 'Felix FÃ¼rstenberg' ) ,( 'LG CASE' ) ,( 'v1' ) ,( 'Felix FÃ¼rstenberg' ) ,( 'v0' ) ,( 'v1' ) ; SELECT CAST ( 'test' AS INTEGER ) FROM v0 , v0 , v0 , v0 , v0 GROUP BY 'v1' ;",,sqlite 3.39.0,hang,¡Ì,¡Á
+" CREATE TABLE v0 ( v1 FLOAT UNIQUE ON CONFLICT IGNORE CHECK( v1 NOT LIKE 'v1' ) ) ;
+  INSERT INTO v0 ( v1 ) VALUES ( 3 ) ,( 2 ) ,( 0 ) ;
+  ANALYZE ;
+  INSERT INTO v0 ( v1 , v1 ) SELECT * FROM v0 AS x JOIN v0 ON - 1.100000 NATURAL JOIN v0 ORDER BY v1 DESC , v1 ;
+  SELECT min ( v1 ) FROM v0 WHERE zeroblob ( 4294967296 ) > v1 AND v1 GLOB 'v1' GROUP BY v1 HAVING v1 > 'v1' ;",,sqlite 3.39.0,crash,¡Ì,¡Á
+"set session optimizer_switch='hypergraph_optimizer=on';
+CREATE TABLE v0 ( v1 INTEGER , v2 FLOAT PRIMARY KEY , v3 INTEGER ) ;
+INSERT INTO v0 VALUES ( -128 , 48510636.000000 , 2147483647 ) ;
+SELECT v1 , STDDEV_POP ( v3 ) OVER win1 FROM v0 WINDOW v4 AS ( ORDER BY v2 GROUPS BETWEEN 2147483647 FOLLOWING AND -2147483648 FOLLOWING ) ;
+SELECT min(1) WHERE sysdate()=(ROW(2,5)=ROW(1,3));",,mysql 8.0.23,crash,¡Ì,¡Á
+"CREATE TABLE v0 ( v1 INT NOT NULL CHECK ( ( v1 = 93 AND v1 < 'x' ) OR v1 = 18 ) ) ;
+ SELECT DISTINCT v1 , v1 * v1 FROM v0 WINDOW v2 AS ( PARTITION BY v1 > ( SELECT 127 FROM v0 ) ORDER BY ( v1 > -128 ) DESC ) ORDER BY v1 , v1 DESC , v1 ASC ;",,mysql 8.0.23,crash,¡Ì,¡Á
+"Set mroonga_dry_write = off;
+CREATE TABLE t (pk INT AUTO_INCREMENT, a INT, b INT, PRIMARY KEY (pk), KEY (a)) ENGINE=Mroonga;
+INSERT INTO t (a, b) VALUES (0,1),(2,2);
+CREATE TRIGGER tr AFTER UPDATE ON t FOR EACH ROW SET @a= 1;
+UPDATE t SET b = 3 WHERE a = 0;",,mariadb 11.2,crash,¡Ì,¡Á
+"CREATE TABLE test_table ( col INT ) ;
+INSERT INTO test_table ( col ) VALUES ( 55 ) ;
+UPDATE test_table SET col = 30 WHERE 70 > -100 = ( NOT ( col IS NULL ) ) ;
+INSERT INTO test_table ( col ) VALUES ( 10 ) , ( 90 ) ;
+CREATE INDEX test_index ON test_table ( ( col = 130 ) , ( col + col ) , col , ( col + - -2 ) , ( col > 35 ) ) ;",false positive,mysql 8.0.23,crash,¡Ì,¡Ì
+"CREATE TABLE v0 ( v1 INT ) ;
+INSERT INTO v0 ( v1 ) VALUES ( 75 ) ; 
+UPDATE v0 SET v1 = NULL BETWEEN ( SELECT 100 FROM v0 WHERE v1 = 100 AND v1 < 0 GROUP BY - 'y' >= v1 HAVING ( -512 = 2147483647 AND v1 = 85 ) ) AND 45 WHERE v1 = 10 ;",false positive,mariadb 11.2,crash,¡Ì,¡Ì

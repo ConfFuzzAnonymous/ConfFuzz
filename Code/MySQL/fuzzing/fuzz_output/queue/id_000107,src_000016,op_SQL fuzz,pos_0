@@ -1,0 +1,5 @@
+CREATE TABLE v0 ( v1 VARCHAR ( -2147483648 ) ) ;
+ INSERT INTO v0 ( v1 , v1 , v1 ) VALUES ( 255 , 79 , 16 ) , ( -128 ^ 77 , 'x' ) ;
+ SELECT 64 AS v2 FROM v0 NATURAL JOIN v0 ORDER BY VAR_SAMP ( ) ;
+ SELECT LAG ( v1 ) FROM v0 ORDER BY v1 * 0 ;
+ 

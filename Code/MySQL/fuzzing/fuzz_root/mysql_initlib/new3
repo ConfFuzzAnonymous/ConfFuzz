@@ -1,0 +1,2 @@
+SET SESSION optimizer_switch ='hypergraph_optimizer=on';
+SELECT min(1) WHERE sysdate() = (ROW(2, 5) = ROW(1, 3));

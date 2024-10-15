@@ -1,0 +1,5 @@
+CREATE TABLE v0 ( v1 VARCHAR ( 8 ) ) ;
+ INSERT INTO v0 ( v1 , v1 , v1 ) VALUES ( 49 , 127 , 78 ) , ( 92 ^ 76 , 'x' ) ;
+ SELECT 4 AS v3 FROM v0 AS v2 , v0 AS v4 NATURAL JOIN v0 NATURAL JOIN v0 ORDER BY ( v1 = 0 OR v1 = -1 ) ;
+ SELECT BIT_OR ( v1 ) FROM v0 ORDER BY v1 * 75 ;
+ 

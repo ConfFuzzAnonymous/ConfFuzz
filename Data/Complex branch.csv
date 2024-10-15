@@ -1,0 +1,560 @@
+DBMS,Option,Statement,Program variables,Influence
+mysql,reverse_unordered_selects,if( pWInfo->pOrderBy==0 && (db->flags & SQLITE_ReverseOrder)!=0 ),pOrderBy,query
+mysql,innodb_api_disable_rowlock,if (eng && eng->cfg_status & IB_CFG_DISABLE_ROWLOCK),eng,query
+mysql,binlog_gtid_simple_recovery,if (binlog_gtid_simple_recovery && is_server_starting &&!is_relay_log) ,is_relay_log,Not influence
+mysql,binlog_gtid_simple_recovery,if (binlog_gtid_simple_recovery && is_server_starting &&!is_relay_log) ,is_server_starting,Not influence
+mysql,binlog_format,"if (variables.binlog_format == BINLOG_FORMAT_STMT &&
+        (in_multi_stmt_transaction_mode() || in_sub_stmt)) ",in_sub_stmt,query
+mysql,binlog_format,"if (!m_deterministic && !trust_function_creators &&
+  (access == SP_CONTAINS_SQL || access == SP_MODIFIES_SQL_DATA) &&(mysql_bin_log.is_open() &&
+thd->variables.binlog_format == BINLOG_FORMAT_STMT))",m_deterministic,Not influence
+mysql,binlog_format,"if (!m_deterministic && !trust_function_creators &&
+  (access == SP_CONTAINS_SQL || access == SP_MODIFIES_SQL_DATA) &&(mysql_bin_log.is_open() &&
+thd->variables.binlog_format == BINLOG_FORMAT_STMT))",trust_function_creators,Not influence
+mysql,binlog_format,"if (!m_deterministic && !trust_function_creators &&
+  (access == SP_CONTAINS_SQL || access == SP_MODIFIES_SQL_DATA) &&(mysql_bin_log.is_open() &&
+thd->variables.binlog_format == BINLOG_FORMAT_STMT))",access,Not influence
+mysql,binlog_format," if (thd->query_name_consts && mysql_bin_log.is_open() && thd->variables.binlog_format == BINLOG_FORMAT_STMT &&!mysql_bin_log.is_query_in_union(thd, thd->query_id))",query_name_consts,query
+mysql,binlog_format,"if (!using_limit && const_cond_result && !no_rows &&
+      !(specialflag & SPECIAL_NO_NEW_FUNC) &&
+      ((!thd->is_current_stmt_binlog_format_row() ||  
+        thd->is_current_stmt_binlog_disabled()) &&    
+       !has_delete_triggers)) ",using_limit,query
+mysql,binlog_format,"if (!using_limit && const_cond_result && !no_rows &&
+      !(specialflag & SPECIAL_NO_NEW_FUNC) &&
+      ((!thd->is_current_stmt_binlog_format_row() ||  
+        thd->is_current_stmt_binlog_disabled()) &&    
+       !has_delete_triggers)) ",const_cond_result,Not influence
+mysql,binlog_format,"if (!using_limit && const_cond_result && !no_rows &&
+      !(specialflag & SPECIAL_NO_NEW_FUNC) &&
+      ((!thd->is_current_stmt_binlog_format_row() ||  
+        thd->is_current_stmt_binlog_disabled()) &&    
+       !has_delete_triggers)) ",no_rows,Table data
+mysql,binlog_format,"if (!using_limit && const_cond_result && !no_rows &&
+      !(specialflag & SPECIAL_NO_NEW_FUNC) &&
+      ((!thd->is_current_stmt_binlog_format_row() ||  
+        thd->is_current_stmt_binlog_disabled()) &&    
+       !has_delete_triggers)) ",has_delete_triggers,Table Structure
+mysql,binlog_format, if (!thd->is_current_stmt_binlog_format_row() || table->s->tmp_table),tmp_table,query
+mysql,binlog_format," if (thd->variables.binlog_format == BINLOG_FORMAT_STMT &&
+      thd->lex->drop_temporary && (thd->in_sub_stmt & SUB_STMT_FUNCTION) &&
+      thd->binlog_evt_union.do_union) ",drop_temporary,Not influence
+mysql,binlog_format," if (thd->variables.binlog_format == BINLOG_FORMAT_STMT &&
+      thd->lex->drop_temporary && (thd->in_sub_stmt & SUB_STMT_FUNCTION) &&
+      thd->binlog_evt_union.do_union) ",in_sub_stmt,query
+mysql,binlog_format," if (thd->variables.binlog_format == BINLOG_FORMAT_STMT &&
+      thd->lex->drop_temporary && (thd->in_sub_stmt & SUB_STMT_FUNCTION) &&
+      thd->binlog_evt_union.do_union) ",do_union,Not influence
+mysql,binlog_format,"if (!m_auto_increment_safe_stmt_log_lock &&
+      thd->lex->sql_command != SQLCOM_INSERT &&
+      binlog_format != BINLOG_FORMAT_UNSPEC &&
+      binlog_format != BINLOG_FORMAT_ROW)",m_auto_increment_safe_stmt_log_lock,Not influence
+mysql,binlog_format,if (lock_type == F_WRLCK && !(table_flags() & HA_BINLOG_STMT_CAPABLE) &&thd_binlog_format(thd) == BINLOG_FORMAT_STMT &&thd_binlog_filter_ok(thd) && thd_sqlcom_can_generate_row_events(thd)),lock_type,Not influence
+mysql,binlog_error_action," if ((opt_binlog_order_commits || Clone_handler::need_commit_order()) &&
+      (sync_error == 0 || binlog_error_action != ABORT_SERVER))",sync_error,Not influence
+mysql,binlog_direct_non_transactional_updates,"  if (lex->is_mixed_stmt_unsafe(multi_stmt_trans, binlog_direct, trans_table,
+                                  tx_isolation))",multi_stmt_trans,Not influence
+mysql,binlog_direct_non_transactional_updates,"  if (lex->is_mixed_stmt_unsafe(multi_stmt_trans, binlog_direct, trans_table,
+                                  tx_isolation))",trans_table,Not influence
+mysql,binlog_encryption,if (!existing && rpl_encryption.is_enabled()),existing,Not influence
+mysql,automatic_sp_privileges," if (sp_automatic_privileges && !opt_noacl &&
+  check_routine_access( thd, DEFAULT_CREATE_PROC_ACLS, lex->sphead->m_db.str, name,lex->sql_command == SQLCOM_CREATE_PROCEDURE, true)) ",name,Not influence
+mysql,innodb_buffer_pool_instances, if (srv_n_page_cleaners > srv_buf_pool_instances),srv_n_page_cleaners,Not influence
+mysql,max_heap_table_size,if (rowlen * distinct_rowcount < join->thd->variables.max_heap_table_size),rowlen,Table data
+mysql,max_heap_table_size,if (rowlen * distinct_rowcount < join->thd->variables.max_heap_table_size),distinct_rowcount,Table data
+mysql,max_heap_table_size,if (tab->table()->s->reclength * inner_query_rowcount <thd->variables.max_heap_table_size),reclength,Table data
+mysql,max_heap_table_size,if (tab->table()->s->reclength * inner_query_rowcount <thd->variables.max_heap_table_size),inner_query_rowcount,Table data
+mysql,max_heap_table_size, if (outer_fanout * rowsize < thd->variables.max_heap_table_size),rowsize,Table data
+mysql,long_query_time, if (my_micro_time() > utime_after_lock + variables.long_query_time),utime_after_lock,Not influence
+mysql,select_limit,"if (!is_force_index && (select_limit >= table_records) &&(tab->type() == JT_ALL &&
+join->primary_tables > join->const_tables + 1) &&((unsigned)best_key != table->s->primary_key ||!table->file->primary_key_is_clustered())) ",is_force_index,Not influence
+mysql,select_limit,"if (!is_force_index && (select_limit >= table_records) &&(tab->type() == JT_ALL &&
+join->primary_tables > join->const_tables + 1) &&((unsigned)best_key != table->s->primary_key ||!table->file->primary_key_is_clustered())) ",table_records,Table data
+mysql,select_limit,"if (!is_force_index && (select_limit >= table_records) &&(tab->type() == JT_ALL &&
+join->primary_tables > join->const_tables + 1) &&((unsigned)best_key != table->s->primary_key ||!table->file->primary_key_is_clustered())) ",primary_tables,Not influence
+mysql,select_limit,"if (!is_force_index && (select_limit >= table_records) &&(tab->type() == JT_ALL &&
+join->primary_tables > join->const_tables + 1) &&((unsigned)best_key != table->s->primary_key ||!table->file->primary_key_is_clustered())) ",const_tables,Not influence
+mysql,select_limit," if (is_covering || select_limit != HA_POS_ERROR ||
+          (ref_key < 0 && (group || table->force_index_order))) ",is_covering,query
+mysql,select_limit," if (is_covering || select_limit != HA_POS_ERROR ||
+          (ref_key < 0 && (group || table->force_index_order))) ",ref_key,query
+mysql,select_limit," if (is_covering || select_limit != HA_POS_ERROR ||
+          (ref_key < 0 && (group || table->force_index_order))) ",group,query
+mysql,select_limit," if (is_covering || select_limit != HA_POS_ERROR ||
+          (ref_key < 0 && (group || table->force_index_order))) ",force_index_order,query
+mysql,select_limit,if (select_limit > table_records / rec_per_key),table_records,Table data
+mysql,select_limit,if (select_limit > table_records / rec_per_key),rec_per_key,Table data
+mysql,select_limit,if (select_limit > refkey_rows_estimate),refkey_rows_estimate,Table data
+mysql,select_limit,if (multitable && select->select_limit) ,multitable,query
+mysql,select_limit," if ((!view->is_view() && !view->belong_to_view) ||
+      thd->lex->sql_command == SQLCOM_INSERT ||
+      thd->lex->select_lex->select_limit == nullptr)",belong_to_view,Not influence
+mysql,select_limit,if (unit->select_limit_cnt != HA_POS_ERROR || unit->offset_limit_cnt != 0),select_limit_cnt,query
+mysql,select_limit,if (unit->select_limit_cnt != HA_POS_ERROR || unit->offset_limit_cnt != 0) ,select_limit_cnt,query
+mysql,select_limit,if (unit->select_limit_cnt == 0 && !calc_found_rows) ,calc_found_rows,Table data
+mysql,max_join_size,if (!(thd->variables.option_bits & OPTION_BIG_SELECTS) &&best_read > (double)thd->variables.max_join_size &&!thd->lex->is_explain()),best_read,query
+mysql,lock_wait_timeout,"if (thd->mdl_context.acquire_locks(&mdl_requests,
+  thd->variables.lock_wait_timeout))",mdl_requests,Not influence
+mysql,innodb_checkpoint_disabled,if (*(bool *)save && !srv_checkpoint_disabled) ,save,Not influence
+mysql,innodb_checkpoint_disabled, if (*(bool *)save && !srv_checkpoint_disabled),save,Not influence
+mysql,max_allowed_packet,if (length > current_thd->variables.max_allowed_packet / (uint)count) ,length,Table data
+mysql,max_allowed_packet,if (length > current_thd->variables.max_allowed_packet / (uint)count) ,count,Table data
+mysql,max_allowed_packet,if (tot_length > current_thd->variables.max_allowed_packet),tot_length,Table data
+mysql,max_allowed_packet," if (cast_length >= 0 &&
+      static_cast<ulonglong>(cast_length) > thd->variables.max_allowed_packet) ",cast_length,Table data
+mysql,max_allowed_packet, if (tmp_value.length() > current_thd->variables.max_allowed_packet),tmp_value,Not influence
+mysql,max_allowed_packet,if (new_size > current_thd->variables.max_allowed_packet) ,new_size,Table data
+mysql,max_allowed_packet, if (str_value.length() + length > current_thd->variables.max_allowed_packet),length,Table data
+mysql,innodb_cmp_per_index_enabled,if (!srv_cmp_per_index_enabled && *(bool *)save) ,save,Not influence
+mysql,innodb_commit_concurrency, if (commit_threads <= innobase_commit_concurrency),commit_threads,Not influence
+mysql,max_error_count," if (m_allow_unlimited_conditions ||
+      m_conditions_list.elements() < thd->variables.max_error_count) ",m_allow_unlimited_conditions,Not influence
+mysql,net_buffer_length, if (total_length + row_length < opt_net_buffer_length),row_length,Table data
+mysql,sort_buffer_size,  if ((memavl - sizeof(BUFFPEK)) / (sort_length + sizeof(char *)) > UINT_MAX32),sort_length,Table data
+mysql,cache_size, if (num_keys == 0 || num_keys * MI_MIN_SIZE_BULK_INSERT_TREE > cache_size),num_keys,Table Structure
+mysql,cache_size,if (rows && rows * total_keylength < cache_size),rows,Table data
+mysql,cache_size,if (rows && rows * total_keylength < cache_size),total_keylength,Table data
+mysql,cte_max_recursion_depth,"if (++m_recursive_iteration_count >
+        thd()->variables.cte_max_recursion_depth)",m_recursive_iteration_count,workload
+mysql,eq_range_index_dive_limit,if (*count >= limit),count,Table data
+mysql,event_scheduler,if (opt_event_scheduler != Events::EVENTS_DISABLED && !event_already_exists) ,event_already_exists,query
+mysql,flush,if (flush && os_fsync_threshold != 0),os_fsync_threshold,Not influence
+mysql,ft_min_word_len,"if (((length >= ft_min_word_len &&
+!is_stopword((char *)word->pos, word->len)) ||param->trunc) &&length < ft_max_word_len) ",length,Not influence
+mysql,ft_min_word_len,"if (((length >= ft_min_word_len &&
+!is_stopword((char *)word->pos, word->len)) ||param->trunc) &&length < ft_max_word_len) ",is_stopword,Not influence
+mysql,ft_max_word_len,"if (skip_stopwords == false ||
+        (length >= ft_min_word_len && length < ft_max_word_len &&
+         !is_stopword((char *)word->pos, word->len)))",skip_stopwords,Not influence
+mysql,ft_max_word_len,"if (skip_stopwords == false ||
+        (length >= ft_min_word_len && length < ft_max_word_len &&
+         !is_stopword((char *)word->pos, word->len)))",is_stopword,Not influence
+mysql,log_raw, if (!(opt_general_log_raw || thd->slave_thread)) ,slave_thread,Not influence
+mysql,slow_log,"if ((thd->sp_runtime_ctx == nullptr) &&
+      (general || opt_slow_log || opt_bin_log)) ",sp_runtime_ctx,workload
+mysql,key_cache_block_size,if (block_length > keycache->key_cache_block_size || offset),block_length,workload
+mysql,key_cache_block_size,if (block_length > keycache->key_cache_block_size || offset),offset,workload
+mysql,key_cache_block_size,"if (!(block->status & BLOCK_ERROR) &&
+          ((page_st == PAGE_TO_BE_READ &&
+            (offset || read_length < keycache->key_cache_block_size)) ||
+           (page_st == PAGE_WAIT_TO_BE_READ))) ",status,workload
+mysql,key_cache_block_size,"if (!(block->status & BLOCK_ERROR) &&
+          ((page_st == PAGE_TO_BE_READ &&
+            (offset || read_length < keycache->key_cache_block_size)) ||
+           (page_st == PAGE_WAIT_TO_BE_READ))) ",page_st,workload
+mysql,key_cache_block_size,"if (!(block->status & BLOCK_ERROR) &&
+          ((page_st == PAGE_TO_BE_READ &&
+            (offset || read_length < keycache->key_cache_block_size)) ||
+           (page_st == PAGE_WAIT_TO_BE_READ))) ",offset,workload
+mysql,key_cache_block_size,"if (!(block->status & BLOCK_ERROR) &&
+          ((page_st == PAGE_TO_BE_READ &&
+            (offset || read_length < keycache->key_cache_block_size)) ||
+           (page_st == PAGE_WAIT_TO_BE_READ))) ",read_length,Not influence
+mysql,lower_case_table_names,if (db_name && lower_case_table_names) ,db_name,Not influence
+mysql,lower_case_table_names," if (db && (lower_case_table_names || is_infoschema_db(db, strlen(db)))) ",db,Not influence
+mysql,max_connect_errors, if (entry->m_errors.m_connect >= max_connect_errors),m_connect,workload
+mysql,max_connections,if ((default_value = 8 + max_connections / 100) > 100) ,default_value,workload
+mysql,max_connections,if (limit < max_connections),limit,workload
+mysql,max_connections,if (connection_count > max_connections && !is_admin_connection) ,connection_count,workload
+mysql,max_connections,if (connection_count > max_connections && !is_admin_connection) ,is_admin_connection,workload
+mysql,max_digest_length,if (tok <= 0 || tok >= array_elements(lex_token_array) ||current_byte > max_digest_length) ,tok,Not influence
+mysql,max_digest_length,if (tok <= 0 || tok >= array_elements(lex_token_array) ||current_byte > max_digest_length) ,lex_token_array,Not influence
+mysql,max_digest_length,if (tok <= 0 || tok >= array_elements(lex_token_array) ||current_byte > max_digest_length) ,current_byte,Not influence
+mysql,max_digest_length,if (current_byte > max_digest_length),current_byte,Not influence
+mysql,max_join_size," if (!(thd->variables.option_bits & OPTION_BIG_SELECTS) &&
+      best_read > (double)thd->variables.max_join_size &&
+      !thd->lex->is_explain())",best_read,Not influence
+mysql,max_points_in_geometry,"if (istrat != Item_func_buffer::join_miter &&
+          val > current_thd->variables.max_points_in_geometry)",istrat,query
+mysql,max_write_lock_count,if (m_piglet_lock_count >= max_write_lock_count) ,m_piglet_lock_count,workload
+mysql,optimizer_switch, if (thd->optimizer_switch_flag(OPTIMIZER_SWITCH_MRR_COST_BASED) &&!force_dsmrr_by_hints),force_dsmrr_by_hints,Not influence
+mysql,optimizer_switch,if (thd->optimizer_switch_flag(OPTIMIZER_SKIP_SCAN) || force_skip_scan) ,force_skip_scan,Not influence
+mysql,optimizer_switch,if (conds &&thd->optimizer_switch_flag(OPTIMIZER_SWITCH_ENGINE_CONDITION_PUSHDOWN)) ,conds,query
+mysql,optimizer_switch,if (thd->optimizer_switch_flag(OPTIMIZER_SWITCH_PREFER_ORDERING_INDEX) ||is_force_index),is_force_index,query
+mysql,optimizer_switch,"if (recheck_reason != DONT_RECHECK &&
+(tab->table()->force_index_order ||
+thd->optimizer_switch_flag(
+         OPTIMIZER_SWITCH_PREFER_ORDERING_INDEX)))",recheck_reason,Not influence
+mysql,read_only,if (!read_only && ignore_grl_on_analyze) ,ignore_grl_on_analyze,Not influence
+mysql,transaction_read_only, if (trx->read_only || trx->rsegs.m_redo.rseg == nullptr),m_redo.rseg,Not influence
+mysql,secondary_engine_cost_threshold,"if (thd->m_current_query_cost <=
+      thd->variables.secondary_engine_cost_threshold)",m_current_query_cost,query
+mysql,slow_launch_time,if (launch_time >= slow_launch_time * 1000000ULL),launch_time,Not influence
+mysql,transaction_isolation,"if ((thd->tx_isolation == ISO_SERIALIZABLE || issue_warning) &&
+        !(tl->referencing_view && tl->referencing_view->is_system_view))",tx_isolation,Not influence
+mysql,transaction_isolation,"if ((thd->tx_isolation == ISO_SERIALIZABLE || issue_warning) &&
+        !(tl->referencing_view && tl->referencing_view->is_system_view))",referencing_view,Not influence
+mysql,foreign_key_checks," if (!(thd->variables.option_bits & OPTION_NO_FOREIGN_KEY_CHECKS) &&
+        table->s->foreign_keys > 0) ",foreign_keys,Not influence
+mysql,foreign_key_checks,"  if ((!(thd->variables.option_bits & OPTION_NO_FOREIGN_KEY_CHECKS) ||
+         prelocking_ctx->sql_command == SQLCOM_LOCK_TABLES ||
+         table_list->prelocking_placeholder) &&
+        !(table_list->table->s->tmp_table)) ",prelocking_placeholder,Not influence
+mysql,foreign_key_checks,"  if ((!(thd->variables.option_bits & OPTION_NO_FOREIGN_KEY_CHECKS) ||
+         prelocking_ctx->sql_command == SQLCOM_LOCK_TABLES ||
+         table_list->prelocking_placeholder) &&
+        !(table_list->table->s->tmp_table)) ",tmp_table,Table Structure
+mysql,sql_buffer_result,"if (!tab->filesort && !tab->table()->s->keys &&
+            (!(select_lex->active_options() & OPTION_BUFFER_RESULT) ||
+             need_tmp_before_win || wno >= 1))",need_tmp_before_win,Not influence
+mysql,sql_buffer_result,"if (!tab->filesort && !tab->table()->s->keys &&
+            (!(select_lex->active_options() & OPTION_BUFFER_RESULT) ||
+             need_tmp_before_win || wno >= 1))",wno,workload
+mysql,sql_notes," if (!(variables.option_bits & OPTION_SQL_NOTES) &&
+      (level == Sql_condition::SL_NOTE))",level,workload
+mysql,sql_require_primary_key," if (!primary_key && !thd->is_dd_system_thread() &&
+      !thd->is_initialize_system_thread() &&
+      (file->ha_table_flags() &
+       (HA_BINLOG_ROW_CAPABLE | HA_BINLOG_STMT_CAPABLE)) != 0 &&
+      thd->variables.sql_require_primary_key)",primary_key,Table Structure
+mariadb,sql_require_primary_key,"if (!dd::has_primary_key(*m_table_object) &&
+      thd->variables.sql_require_primary_key) ",m_table_object,Not influence
+mariadb,default_table_encryption,"if (opt_table_encryption_privilege_check &&
+      encrypt_schema != thd->variables.default_table_encryption &&
+      check_table_encryption_admin_access(thd))",encrypt_schema,Table Structure
+mariadb,default_table_encryption,"if (create_info->encrypt_type.str && opt_table_encryption_privilege_check &&
+      dd::is_encrypted(create_info->encrypt_type) !=
+          thd->variables.default_table_encryption &&
+      check_table_encryption_admin_access(thd))",encrypt_type,Table Structure
+mariadb,, if (!show_warning && opt_table_encryption_privilege_check) ,show_warning,Not influence
+mariadb,," bool tx_chain =
+          (lex->tx_chain == TVL_YES ||
+           (thd->variables.completion_type == 1 && lex->tx_chain != TVL_NO));",tx_chain,Not influence
+mariadb,,"if (requested_lock == Alter_info::ALTER_TABLE_LOCK_SHARED &&
+        algorithm(thd) == Alter_info::ALTER_TABLE_ALGORITHM_DEFAULT &&
+        thd->variables.alter_algorithm ==
+                Alter_info::ALTER_TABLE_ALGORITHM_DEFAULT)",requested_lock,workload
+mariadb,,﻿if (spcont && sysvar == Sys_autocommit_ptr),spcont,workload
+mariadb,,"if (share->blob_fields || m_using_unique_constraint ||
+      (thd->variables.big_tables &&
+       !(m_select_options & SELECT_SMALL_RESULT)) ||
+      (m_select_options & TMP_TABLE_FORCE_MYISAM) ||
+      thd->variables.tmp_memory_table_size == 0)",blob_fields,Not influence
+mariadb,,"if (share->blob_fields || m_using_unique_constraint ||
+      (thd->variables.big_tables &&
+       !(m_select_options & SELECT_SMALL_RESULT)) ||
+      (m_select_options & TMP_TABLE_FORCE_MYISAM) ||
+      thd->variables.tmp_memory_table_size == 0)",m_using_unique_constraint,Table Structure
+mariadb,,"if (share->blob_fields || m_using_unique_constraint ||
+      (thd->variables.big_tables &&
+       !(m_select_options & SELECT_SMALL_RESULT)) ||
+      (m_select_options & TMP_TABLE_FORCE_MYISAM) ||
+      thd->variables.tmp_memory_table_size == 0)",m_select_options,query
+mariadb,,"if (!lock->read.data ||
+     (lock_type <= TL_WRITE_DELAYED &&
+      ((lock_type != TL_WRITE_CONCURRENT_INSERT &&
+        lock_type != TL_WRITE_ALLOW_WRITE) ||
+       !lock->read_no_write_count)))",read_no_write_count,workload
+mariadb,,"if (!lock->read.data ||
+     (lock_type <= TL_WRITE_DELAYED &&
+      ((lock_type != TL_WRITE_CONCURRENT_INSERT &&
+        lock_type != TL_WRITE_ALLOW_WRITE) ||
+       !lock->read_no_write_count)))",lock_type,workload
+mariadb,,"if (data->type == TL_WRITE_CONCURRENT_INSERT &&
+       (*lock->check_status)(data->status_param))",data,workload
+mariadb,,"if (data->type == TL_WRITE_CONCURRENT_INSERT &&
+       (*lock->check_status)(data->status_param))",check_status,workload
+mariadb,,if (file_type != NO_RECORD && encrypt_tmp_disk_tables),file_type,Not influence
+mariadb,,"if (j != join->const_tables && js_tab->use_quick != 2 &&
+              j <= no_jbuf_after &&
+              ((js_tab->type == JT_ALL && join_cache_level != 0) ||
+               (join_cache_level > 2 && (js_tab->type == JT_REF || 
+                                         js_tab->type == JT_EQ_REF))))",const_tables,workload
+mariadb,,"if (j != join->const_tables && js_tab->use_quick != 2 &&
+              j <= no_jbuf_after &&
+              ((js_tab->type == JT_ALL && join_cache_level != 0) ||
+               (join_cache_level > 2 && (js_tab->type == JT_REF || 
+                                         js_tab->type == JT_EQ_REF))))",use_quick,query
+mariadb,,"if (j != join->const_tables && js_tab->use_quick != 2 &&
+              j <= no_jbuf_after &&
+              ((js_tab->type == JT_ALL && join_cache_level != 0) ||
+               (join_cache_level > 2 && (js_tab->type == JT_REF || 
+                                         js_tab->type == JT_EQ_REF))))",no_jbuf_after,query
+mariadb,,"if (j != join->const_tables && js_tab->use_quick != 2 &&
+              j <= no_jbuf_after &&
+              ((js_tab->type == JT_ALL && join_cache_level != 0) ||
+               (join_cache_level > 2 && (js_tab->type == JT_REF || 
+                                         js_tab->type == JT_EQ_REF))))",type,query
+mariadb,,if (unit->select_limit_cnt != HA_POS_ERROR || unit->offset_limit_cnt != 0),select_limit_cnt,query
+mariadb,,if (unit->select_limit_cnt != HA_POS_ERROR || unit->offset_limit_cnt != 0) ,select_limit_cnt,query
+mariadb,," if (is_covering || select_limit != HA_POS_ERROR ||
+          (ref_key < 0 && (group || table->force_index_order))) ",is_covering,query
+mariadb,," if (is_covering || select_limit != HA_POS_ERROR ||
+          (ref_key < 0 && (group || table->force_index_order))) ",ref_key,query
+mariadb,,if (nelem < my_large_page_sizes_length),nelem,Not influence
+mariadb,,if (!name && !lower_case_table_names),name,query
+mariadb,,"if (lower_case_table_names== 1 ||
+      (lower_case_table_names == 2 && !alias_name_used))",alias_name_used,query
+mariadb,, if (db_name.str && lower_case_table_names),db_name,Not influence
+mariadb,,if (lower_case_table_names || is_routine),is_routine,Not influence
+mariadb,,"if (join->prune_level >= 1 &&
+        search_depth >= thd->variables.optimizer_extra_pruning_depth)",prune_level,workload
+mariadb,,if (rowlen * distinct_rowcount < join->thd->variables.max_heap_table_size),distinct_rowcount,Table data
+mariadb,,if (tab->table()->s->reclength * inner_query_rowcount <thd->variables.max_heap_table_size),reclength,Table data
+mariadb,,if (tab->table()->s->reclength * inner_query_rowcount <thd->variables.max_heap_table_size),inner_query_rowcount,Table data
+mariadb,, if (outer_fanout * rowsize < thd->variables.max_heap_table_size),rowsize,Table data
+mariadb,,"if (len >= MY_MIN(query_cache_size, query_cache_limit))",len,workload
+mariadb,," if (is_disabled() || thd->locked_tables_mode ||
+      thd->variables.query_cache_type == 0)",locked_tables_mode,Not influence
+mariadb,,"if (thd->lex->safe_to_cache_query &&
+      (thd->variables.query_cache_type == 1 ||
+       (thd->variables.query_cache_type == 2 &&
+        (lex->first_select_lex()->options & OPTION_TO_QUERY_CACHE))) &&
+      qc_is_able_to_intercept_result(thd))",safe_to_cache_query,Not influence
+mariadb,,"if (!using_limit && const_cond_result && !no_rows &&
+      !(specialflag & SPECIAL_NO_NEW_FUNC) &&
+      ((!thd->is_current_stmt_binlog_format_row() ||  
+        thd->is_current_stmt_binlog_disabled()) &&    
+       !has_delete_triggers)) ",const_cond_result,Not influence
+mariadb,,"if (!using_limit && const_cond_result && !no_rows &&
+      !(specialflag & SPECIAL_NO_NEW_FUNC) &&
+      ((!thd->is_current_stmt_binlog_format_row() ||  
+        thd->is_current_stmt_binlog_disabled()) &&    
+       !has_delete_triggers)) ",no_rows,Table data
+mariadb,,"if (!using_limit && const_cond_result && !no_rows &&
+      !(specialflag & SPECIAL_NO_NEW_FUNC) &&
+      ((!thd->is_current_stmt_binlog_format_row() ||  
+        thd->is_current_stmt_binlog_disabled()) &&    
+       !has_delete_triggers)) ",has_delete_triggers,Table Structure
+mariadb,, if (!thd->is_current_stmt_binlog_format_row() || table->s->tmp_table),tmp_table,Table Structure
+mariadb,," if (thd->variables.binlog_format == BINLOG_FORMAT_STMT &&
+      thd->lex->drop_temporary && (thd->in_sub_stmt & SUB_STMT_FUNCTION) &&
+      thd->binlog_evt_union.do_union) ",drop_temporary,Not influence
+mariadb,max_connections,if (limit < max_connections),limit,workload
+mariadb,max_connections,if (connection_count > max_connections && !is_admin_connection) ,connection_count,workload
+mariadb,max_connections,if (connection_count > max_connections && !is_admin_connection) ,is_admin_connection,workload
+mariadb,max_digest_length,if (tok <= 0 || tok >= array_elements(lex_token_array) ||current_byte > max_digest_length) ,tok,Not influence
+mariadb,max_digest_length,if (tok <= 0 || tok >= array_elements(lex_token_array) ||current_byte > max_digest_length) ,lex_token_array,Not influence
+mariadb,max_digest_length,if (tok <= 0 || tok >= array_elements(lex_token_array) ||current_byte > max_digest_length) ,current_byte,Not influence
+mariadb,max_digest_length,if (current_byte > max_digest_length),current_byte,Not influence
+mariadb,max_join_size," if (!(thd->variables.option_bits & OPTION_BIG_SELECTS) &&
+      best_read > (double)thd->variables.max_join_size &&
+      !thd->lex->is_explain())",best_read,Not influence
+mariadb,max_points_in_geometry,"if (istrat != Item_func_buffer::join_miter &&
+          val > current_thd->variables.max_points_in_geometry)",istrat,query
+mariadb,max_write_lock_count,if (m_piglet_lock_count >= max_write_lock_count) ,m_piglet_lock_count,workload
+mariadb,optimizer_switch, if (thd->optimizer_switch_flag(OPTIMIZER_SWITCH_MRR_COST_BASED) &&!force_dsmrr_by_hints),force_dsmrr_by_hints,Not influence
+mariadb,optimizer_switch,if (thd->optimizer_switch_flag(OPTIMIZER_SKIP_SCAN) || force_skip_scan) ,force_skip_scan,Not influence
+mariadb,optimizer_switch,if (conds &&thd->optimizer_switch_flag(OPTIMIZER_SWITCH_ENGINE_CONDITION_PUSHDOWN)) ,conds,query
+mariadb,optimizer_switch,if (thd->optimizer_switch_flag(OPTIMIZER_SWITCH_PREFER_ORDERING_INDEX) ||is_force_index),is_force_index,query
+mariadb,optimizer_switch,"if (recheck_reason != DONT_RECHECK &&
+(tab->table()->force_index_order ||
+thd->optimizer_switch_flag(
+         OPTIMIZER_SWITCH_PREFER_ORDERING_INDEX)))",recheck_reason,Not influence
+mariadb,read_only,if (!read_only && ignore_grl_on_analyze) ,ignore_grl_on_analyze,Not influence
+mariadb,transaction_read_only, if (trx->read_only || trx->rsegs.m_redo.rseg == nullptr),m_redo.rseg,Not influence
+mariadb,secondary_engine_cost_threshold,"if (thd->m_current_query_cost <=
+      thd->variables.secondary_engine_cost_threshold)",m_current_query_cost,query
+mariadb,slow_launch_time,if (launch_time >= slow_launch_time * 1000000ULL),launch_time,Not influence
+mariadb,transaction_isolation,"if ((thd->tx_isolation == ISO_SERIALIZABLE || issue_warning) &&
+        !(tl->referencing_view && tl->referencing_view->is_system_view))",tx_isolation,Not influence
+mariadb,transaction_isolation,"if ((thd->tx_isolation == ISO_SERIALIZABLE || issue_warning) &&
+        !(tl->referencing_view && tl->referencing_view->is_system_view))",referencing_view,Not influence
+mariadb,foreign_key_checks," if (!(thd->variables.option_bits & OPTION_NO_FOREIGN_KEY_CHECKS) &&
+        table->s->foreign_keys > 0) ",foreign_keys,Not influence
+mariadb,foreign_key_checks,"  if ((!(thd->variables.option_bits & OPTION_NO_FOREIGN_KEY_CHECKS) ||
+         prelocking_ctx->sql_command == SQLCOM_LOCK_TABLES ||
+         table_list->prelocking_placeholder) &&
+        !(table_list->table->s->tmp_table)) ",prelocking_placeholder,Not influence
+mariadb,foreign_key_checks,"  if ((!(thd->variables.option_bits & OPTION_NO_FOREIGN_KEY_CHECKS) ||
+         prelocking_ctx->sql_command == SQLCOM_LOCK_TABLES ||
+         table_list->prelocking_placeholder) &&
+        !(table_list->table->s->tmp_table)) ",tmp_table,Table Structure
+mariadb,sql_buffer_result,"if (!tab->filesort && !tab->table()->s->keys &&
+            (!(select_lex->active_options() & OPTION_BUFFER_RESULT) ||
+             need_tmp_before_win || wno >= 1))",need_tmp_before_win,Not influence
+mariadb,," if (thd->variables.binlog_format == BINLOG_FORMAT_STMT &&
+      thd->lex->drop_temporary && (thd->in_sub_stmt & SUB_STMT_FUNCTION) &&
+      thd->binlog_evt_union.do_union) ",in_sub_stmt,query
+pgsql,enable_incremental_sort,if (presorted_keys == 0 || !enable_incremental_sort),presorted_keys,query
+pgsql,enable_incremental_sort,if (enable_incremental_sort && list_length(root->sort_pathkeys) > 1),sort_pathkeys,query
+pgsql,enable_incremental_sort,if (is_sorted || !enable_incremental_sort),is_sorted,Not influence
+pgsql,enable_material,"if (enable_material && inner_cheapest_total != NULL &&
+			!ExecMaterializesOutput(inner_cheapest_total->pathtype))
+			matpath = (Path *)",inner_cheapest_total,Not influence
+pgsql,enable_mergejoin,if (enable_mergejoin || jointype == JOIN_FULL),jointype,Not influence
+pgsql,enable_partitionwise_join,"if (enable_partitionwise_join &&
+		rel->reloptkind == RELOPT_BASEREL &&
+		rte->relkind == RELKIND_PARTITIONED_TABLE &&
+		rel->attr_needed[InvalidAttrNumber - rel->min_attr] == NULL)",relkind,Not influence
+pgsql,enable_partitionwise_join,"if (enable_partitionwise_join &&
+		rel->reloptkind == RELOPT_BASEREL &&
+		rte->relkind == RELKIND_PARTITIONED_TABLE &&
+		rel->attr_needed[InvalidAttrNumber - rel->min_attr] == NULL)",attr_needed,Not influence
+pgsql,enable_partitionwise_aggregate,if (enable_partitionwise_aggregate && !parse->groupingSets),groupingSets,Not influence
+pgsql,enable_parallel_hash,"if (innerrel->partial_pathlist != NIL &&
+				save_jointype != JOIN_UNIQUE_INNER &&
+				enable_parallel_hash)",partial_pathlist,Not influence
+pgsql,enable_parallel_hash,"if (innerrel->partial_pathlist != NIL &&
+				save_jointype != JOIN_UNIQUE_INNER &&
+				enable_parallel_hash)",save_jointype,Not influence
+pgsql,enable_partition_pruning,if (!enable_partition_pruning || clauses == NIL),clauses,Not influence
+pgsql,enable_geqo,else if (enable_geqo && levels_needed >= geqo_threshold),levels_needed,Not influence
+pgsql,ignore_checksum_failure,if (header_sane && ignore_checksum_failure),header_sane,
+pgsql,zero_damaged_pages,if (zero_damaged_pages || InRecovery),InRecovery,
+pgsql,wal_recycle,"if (wal_recycle &&
+		*endlogSegNo <= recycleSegNo &&
+		lstat(path, &statbuf) == 0 && S_ISREG(statbuf.st_mode) &&
+		InstallXLogFileSegment(endlogSegNo, path,
+							   true, recycleSegNo, true))",endlogSegNo,Not influence
+pgsql,wal_recycle,"if (wal_recycle &&
+		*endlogSegNo <= recycleSegNo &&
+		lstat(path, &statbuf) == 0 && S_ISREG(statbuf.st_mode) &&
+		InstallXLogFileSegment(endlogSegNo, path,
+							   true, recycleSegNo, true))",recycleSegNo,Not influence
+pgsql,exit_on_error,"if (PG_exception_stack == NULL ||
+				ExitOnAnyError ||
+				proc_exit_inprogress)",proc_exit_inprogress,Not influence
+pgsql,update_process_title,if (update_process_title && new_status == NULL),new_status,Not influence
+pgsql,update_process_title,"	if (report_waiting && (log_recovery_conflict_waits || update_process_title))",report_waiting,Not influence
+pgsql,log_lock_waits,"		if (log_lock_waits && deadlock_state != DS_NOT_YET_CHECKED)",deadlock_state,Not influence
+pgsql,log_recovery_conflict_waits,if (log_recovery_conflict_waits && waitStart == 0),waitStart,Not influence
+pgsql,work_mem,if (nbytes > work_mem_bytes),nbytes,Not influence
+pgsql,effective_cache_size,if (subtreesize > effective_cache_size / 4),subtreesize,Not influence
+pgsql,random_page_cost,if (!spc->opts || spc->opts->random_page_cost < 0),opts,Not influence
+mysql,reverse_unordered_selects,if( pWInfo->pOrderBy==0 && (db->flags & SQLITE_ReverseOrder)!=0 ),pOrderBy,query
+mysql,innodb_api_disable_rowlock,if (eng && eng->cfg_status & IB_CFG_DISABLE_ROWLOCK),eng,query
+mysql,binlog_gtid_simple_recovery,if (binlog_gtid_simple_recovery && is_server_starting &&!is_relay_log) ,is_relay_log,Not influence
+mysql,binlog_gtid_simple_recovery,if (binlog_gtid_simple_recovery && is_server_starting &&!is_relay_log) ,is_server_starting,Not influence
+mysql,binlog_format,"if (variables.binlog_format == BINLOG_FORMAT_STMT &&
+        (in_multi_stmt_transaction_mode() || in_sub_stmt)) ",in_sub_stmt,query
+mysql,binlog_format,"if (!m_deterministic && !trust_function_creators &&
+  (access == SP_CONTAINS_SQL || access == SP_MODIFIES_SQL_DATA) &&(mysql_bin_log.is_open() &&
+thd->variables.binlog_format == BINLOG_FORMAT_STMT))",m_deterministic,Not influence
+mysql,binlog_format,"if (!m_deterministic && !trust_function_creators &&
+  (access == SP_CONTAINS_SQL || access == SP_MODIFIES_SQL_DATA) &&(mysql_bin_log.is_open() &&
+thd->variables.binlog_format == BINLOG_FORMAT_STMT))",trust_function_creators,Not influence
+mysql,binlog_format,"if (!m_deterministic && !trust_function_creators &&
+  (access == SP_CONTAINS_SQL || access == SP_MODIFIES_SQL_DATA) &&(mysql_bin_log.is_open() &&
+thd->variables.binlog_format == BINLOG_FORMAT_STMT))",access,Not influence
+mariadb,read_only,if (!read_only && ignore_grl_on_analyze) ,ignore_grl_on_analyze,Not influence
+mariadb,transaction_read_only, if (trx->read_only || trx->rsegs.m_redo.rseg == nullptr),m_redo.rseg,Not influence
+mariadb,secondary_engine_cost_threshold,"if (thd->m_current_query_cost <=
+      thd->variables.secondary_engine_cost_threshold)",m_current_query_cost,query
+mariadb,slow_launch_time,if (launch_time >= slow_launch_time * 1000000ULL),launch_time,Not influence
+mariadb,transaction_isolation,"if ((thd->tx_isolation == ISO_SERIALIZABLE || issue_warning) &&
+        !(tl->referencing_view && tl->referencing_view->is_system_view))",tx_isolation,Not influence
+mariadb,transaction_isolation,"if ((thd->tx_isolation == ISO_SERIALIZABLE || issue_warning) &&
+        !(tl->referencing_view && tl->referencing_view->is_system_view))",referencing_view,Not influence
+mariadb,foreign_key_checks," if (!(thd->variables.option_bits & OPTION_NO_FOREIGN_KEY_CHECKS) &&
+        table->s->foreign_keys > 0) ",foreign_keys,Not influence
+mariadb,foreign_key_checks,"  if ((!(thd->variables.option_bits & OPTION_NO_FOREIGN_KEY_CHECKS) ||
+         prelocking_ctx->sql_command == SQLCOM_LOCK_TABLES ||
+         table_list->prelocking_placeholder) &&
+        !(table_list->table->s->tmp_table)) ",prelocking_placeholder,Not influence
+mariadb,foreign_key_checks,"  if ((!(thd->variables.option_bits & OPTION_NO_FOREIGN_KEY_CHECKS) ||
+         prelocking_ctx->sql_command == SQLCOM_LOCK_TABLES ||
+         table_list->prelocking_placeholder) &&
+        !(table_list->table->s->tmp_table)) ",tmp_table,Table Structure
+mariadb,sql_buffer_result,"if (!tab->filesort && !tab->table()->s->keys &&
+            (!(select_lex->active_options() & OPTION_BUFFER_RESULT) ||
+             need_tmp_before_win || wno >= 1))",need_tmp_before_win,Not influence
+mariadb,," if (thd->variables.binlog_format == BINLOG_FORMAT_STMT &&
+      thd->lex->drop_temporary && (thd->in_sub_stmt & SUB_STMT_FUNCTION) &&
+      thd->binlog_evt_union.do_union) ",in_sub_stmt,query
+pgsql,enable_incremental_sort,if (presorted_keys == 0 || !enable_incremental_sort),presorted_keys,query
+pgsql,enable_incremental_sort,if (enable_incremental_sort && list_length(root->sort_pathkeys) > 1),sort_pathkeys,query
+pgsql,enable_incremental_sort,if (is_sorted || !enable_incremental_sort),is_sorted,Not influence
+pgsql,enable_material,"if (enable_material && inner_cheapest_total != NULL &&
+			!ExecMaterializesOutput(inner_cheapest_total->pathtype))
+			matpath = (Path *)",inner_cheapest_total,Not influence
+pgsql,enable_mergejoin,if (enable_mergejoin || jointype == JOIN_FULL),jointype,Not influence
+pgsql,enable_partitionwise_join,"if (enable_partitionwise_join &&
+		rel->reloptkind == RELOPT_BASEREL &&
+		rte->relkind == RELKIND_PARTITIONED_TABLE &&
+		rel->attr_needed[InvalidAttrNumber - rel->min_attr] == NULL)",relkind,Not influence
+pgsql,enable_partitionwise_join,"if (enable_partitionwise_join &&
+		rel->reloptkind == RELOPT_BASEREL &&
+		rte->relkind == RELKIND_PARTITIONED_TABLE &&
+		rel->attr_needed[InvalidAttrNumber - rel->min_attr] == NULL)",attr_needed,Not influence
+mysql,ft_max_word_len,"if (skip_stopwords == false ||
+        (length >= ft_min_word_len && length < ft_max_word_len &&
+         !is_stopword((char *)word->pos, word->len)))",skip_stopwords,Not influence
+mysql,ft_max_word_len,"if (skip_stopwords == false ||
+        (length >= ft_min_word_len && length < ft_max_word_len &&
+         !is_stopword((char *)word->pos, word->len)))",is_stopword,Not influence
+mysql,log_raw, if (!(opt_general_log_raw || thd->slave_thread)) ,slave_thread,Not influence
+mysql,slow_log,"if ((thd->sp_runtime_ctx == nullptr) &&
+      (general || opt_slow_log || opt_bin_log)) ",sp_runtime_ctx,workload
+mysql,key_cache_block_size,if (block_length > keycache->key_cache_block_size || offset),block_length,workload
+mysql,key_cache_block_size,if (block_length > keycache->key_cache_block_size || offset),offset,workload
+mysql,key_cache_block_size,"if (!(block->status & BLOCK_ERROR) &&
+          ((page_st == PAGE_TO_BE_READ &&
+            (offset || read_length < keycache->key_cache_block_size)) ||
+           (page_st == PAGE_WAIT_TO_BE_READ))) ",status,workload
+mysql,key_cache_block_size,"if (!(block->status & BLOCK_ERROR) &&
+          ((page_st == PAGE_TO_BE_READ &&
+            (offset || read_length < keycache->key_cache_block_size)) ||
+           (page_st == PAGE_WAIT_TO_BE_READ))) ",page_st,workload
+mysql,key_cache_block_size,"if (!(block->status & BLOCK_ERROR) &&
+          ((page_st == PAGE_TO_BE_READ &&
+            (offset || read_length < keycache->key_cache_block_size)) ||
+           (page_st == PAGE_WAIT_TO_BE_READ))) ",offset,workload
+mysql,key_cache_block_size,"if (!(block->status & BLOCK_ERROR) &&
+          ((page_st == PAGE_TO_BE_READ &&
+            (offset || read_length < keycache->key_cache_block_size)) ||
+           (page_st == PAGE_WAIT_TO_BE_READ))) ",read_length,Not influence
+mysql,lower_case_table_names,if (db_name && lower_case_table_names) ,db_name,Not influence
+mysql,lower_case_table_names," if (db && (lower_case_table_names || is_infoschema_db(db, strlen(db)))) ",db,Not influence
+mysql,max_connect_errors, if (entry->m_errors.m_connect >= max_connect_errors),m_connect,workload
+mysql,max_connections,if ((default_value = 8 + max_connections / 100) > 100) ,default_value,workload
+mysql,max_connections,if (limit < max_connections),limit,workload
+mysql,max_connections,if (connection_count > max_connections && !is_admin_connection) ,connection_count,workload
+mysql,max_connections,if (connection_count > max_connections && !is_admin_connection) ,is_admin_connection,workload
+mysql,max_digest_length,if (tok <= 0 || tok >= array_elements(lex_token_array) ||current_byte > max_digest_length) ,tok,Not influence
+mysql,max_digest_length,if (tok <= 0 || tok >= array_elements(lex_token_array) ||current_byte > max_digest_length) ,lex_token_array,Not influence
+mysql,max_digest_length,if (tok <= 0 || tok >= array_elements(lex_token_array) ||current_byte > max_digest_length) ,current_byte,Not influence
+mysql,max_digest_length,if (current_byte > max_digest_length),current_byte,Not influence
+mysql,max_join_size," if (!(thd->variables.option_bits & OPTION_BIG_SELECTS) &&
+      best_read > (double)thd->variables.max_join_size &&
+      !thd->lex->is_explain())",best_read,Not influence
+mysql,max_points_in_geometry,"if (istrat != Item_func_buffer::join_miter &&
+          val > current_thd->variables.max_points_in_geometry)",istrat,query
+mysql,max_write_lock_count,if (m_piglet_lock_count >= max_write_lock_count) ,m_piglet_lock_count,workload
+mysql,optimizer_switch, if (thd->optimizer_switch_flag(OPTIMIZER_SWITCH_MRR_COST_BASED) &&!force_dsmrr_by_hints),force_dsmrr_by_hints,Not influence
+mysql,optimizer_switch,if (thd->optimizer_switch_flag(OPTIMIZER_SKIP_SCAN) || force_skip_scan) ,force_skip_scan,Not influence
+mysql,optimizer_switch,if (conds &&thd->optimizer_switch_flag(OPTIMIZER_SWITCH_ENGINE_CONDITION_PUSHDOWN)) ,conds,query
+mysql,optimizer_switch,if (thd->optimizer_switch_flag(OPTIMIZER_SWITCH_PREFER_ORDERING_INDEX) ||is_force_index),is_force_index,query
+mysql,optimizer_switch,"if (recheck_reason != DONT_RECHECK &&
+(tab->table()->force_index_order ||
+thd->optimizer_switch_flag(
+         OPTIMIZER_SWITCH_PREFER_ORDERING_INDEX)))",recheck_reason,Not influence
+mysql,read_only,if (!read_only && ignore_grl_on_analyze) ,ignore_grl_on_analyze,Not influence
+mysql,transaction_read_only, if (trx->read_only || trx->rsegs.m_redo.rseg == nullptr),m_redo.rseg,Not influence
+mysql,secondary_engine_cost_threshold,"if (thd->m_current_query_cost <=
+      thd->variables.secondary_engine_cost_threshold)",m_current_query_cost,query
+mysql,slow_launch_time,if (launch_time >= slow_launch_time * 1000000ULL),launch_time,Not influence
+mysql,transaction_isolation,"if ((thd->tx_isolation == ISO_SERIALIZABLE || issue_warning) &&
+        !(tl->referencing_view && tl->referencing_view->is_system_view))",tx_isolation,Not influence
+mysql,transaction_isolation,"if ((thd->tx_isolation == ISO_SERIALIZABLE || issue_warning) &&
+        !(tl->referencing_view && tl->referencing_view->is_system_view))",referencing_view,Not influence
+mysql,foreign_key_checks," if (!(thd->variables.option_bits & OPTION_NO_FOREIGN_KEY_CHECKS) &&
+        table->s->foreign_keys > 0) ",foreign_keys,Not influence
+mysql,foreign_key_checks,"  if ((!(thd->variables.option_bits & OPTION_NO_FOREIGN_KEY_CHECKS) ||
+         prelocking_ctx->sql_command == SQLCOM_LOCK_TABLES ||
+         table_list->prelocking_placeholder) &&
+        !(table_list->table->s->tmp_table)) ",prelocking_placeholder,Not influence
+mysql,foreign_key_checks,"  if ((!(thd->variables.option_bits & OPTION_NO_FOREIGN_KEY_CHECKS) ||
+         prelocking_ctx->sql_command == SQLCOM_LOCK_TABLES ||
+         table_list->prelocking_placeholder) &&
+        !(table_list->table->s->tmp_table)) ",tmp_table,Table Structure
+mysql,sql_buffer_result,"if (!tab->filesort && !tab->table()->s->keys &&
+            (!(select_lex->active_options() & OPTION_BUFFER_RESULT) ||
+             need_tmp_before_win || wno >= 1))",need_tmp_before_win,Not influence
+mariadb,,"if (share->blob_fields || m_using_unique_constraint ||
+      (thd->variables.big_tables &&
+       !(m_select_options & SELECT_SMALL_RESULT)) ||
+      (m_select_options & TMP_TABLE_FORCE_MYISAM) ||
+      thd->variables.tmp_memory_table_size == 0)",m_select_options,query
+mariadb,,"if (!lock->read.data ||
+     (lock_type <= TL_WRITE_DELAYED &&
+      ((lock_type != TL_WRITE_CONCURRENT_INSERT &&
+        lock_type != TL_WRITE_ALLOW_WRITE) ||
+       !lock->read_no_write_count)))",read_no_write_count,workload
+mariadb,,"if (!lock->read.data ||
+     (lock_type <= TL_WRITE_DELAYED &&
+      ((lock_type != TL_WRITE_CONCURRENT_INSERT &&
+        lock_type != TL_WRITE_ALLOW_WRITE) ||
+       !lock->read_no_write_count)))",lock_type,workload
+mariadb,,"if (data->type == TL_WRITE_CONCURRENT_INSERT &&
+       (*lock->check_status)(data->status_param))",data,workload

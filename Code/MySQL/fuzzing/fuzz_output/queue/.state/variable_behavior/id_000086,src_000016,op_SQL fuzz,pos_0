@@ -1,0 +1,5 @@
+CREATE TABLE v0 ( v1 VARCHAR ( 127 ) ) ;
+ INSERT INTO v0 ( v1 , v1 , v1 ) VALUES ( NTH_VALUE ( ) % 19 , 255 , 22 ) , ( 8 ^ -1 , 'x' ) ;
+ SELECT 127 AS v4 FROM v0 AS v3 , v0 AS v2 NATURAL JOIN v0 NATURAL JOIN v0 ORDER BY NTH_VALUE ( ) ;
+ SELECT BIT_OR ( v1 ) FROM v0 ORDER BY v1 * 8 ;
+ 

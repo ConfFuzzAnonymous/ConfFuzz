@@ -1,0 +1,573 @@
+Option,Statement,Location,True'Branch,No.,False'Branch
+alter_algorithm,"if (requested_lock == Alter_info::ALTER_TABLE_LOCK_SHARED && algorithm(thd) == Alter_info::ALTER_TABLE_ALGORITHM_DEFAULT &&
+thd->variables.alter_algorithm ==
+Alter_info::ALTER_TABLE_ALGORITHM_DEFAULT)",sql/sql_alter.cc:188,sql/sql_alter.cc:190,0,
+alter_algorithm,"if ((thd->variables.alter_algorithm == Alter_info::ALTER_TABLE_ALGORITHM_COPY &&
+       alter_info->algorithm(thd) !=
+       Alter_info::ALTER_TABLE_ALGORITHM_INPLACE)
+      || is_inplace_alter_impossible(table, create_info, alter_info)|| IF_PARTITIONING((partition_changed &&
+          !(old_db_type->partition_flags() & HA_USE_AUTO_PARTITION)), 0))",sql/sql_table.cc:10562,sql/sql_table.cc:10569,1,
+alter_algorithm,"if (ha_alter_info.inplace_supported == HA_ALTER_INPLACE_EXCLUSIVE_LOCK &&
+alter_info->requested_lock == Alter_info::ALTER_TABLE_LOCK_SHARED &&
+alter_info->algorithm(thd) ==
+Alter_info::ALTER_TABLE_ALGORITHM_DEFAULT &&
+thd->variables.alter_algorithm ==Alter_info::ALTER_TABLE_ALGORITHM_DEFAULT)",sql/sql_table.cc:10830,sql/sql_table.cc:10832,2,
+analyze_sample_percentage,if (thd->variables.sample_percentage == 0),sql/sql_statistics.cc:2742,sql/sql_statistics.cc:2744,3,
+autocommit,if (!(mysql->server_status & SERVER_STATUS_AUTOCOMMIT)),sql-common/client.c:3515,sql-common/client.c:3516,4,
+autocommit,f (file->autocommit),storage/maria/ha_maria.cc:3024,storage/maria/ha_maria.cc:3026,5,
+autocommit,if (concurrent_insert || !info->autocommit),storage/maria/ma_state.c:642,storage/maria/ma_state.c:644,6,storage/maria/ma_state.c:649
+autocommit,if (opt_autocommit),client/mysqldump.c:4318,client/mysqldump.c:4320,7,
+autocommit,if (opt_autocommit),client/mysqldump.c:4590,client/mysqldump.c:4592,8,
+autocommit,if (!(mysql->server_status & SERVER_STATUS_AUTOCOMMIT)),libmysqld/lib_sql.cc:264,libmysqld/lib_sql.cc:265,9,
+autocommit, if (!(mysql->server_status & SERVER_STATUS_AUTOCOMMIT)),libmysqld/libmysql.c:1472,libmysqld/libmysql.c:1473,10,
+autocommit, if (ha_info_all->is_started()) /* FALSE if autocommit. */,sql/handler.cc:1636,sql/handler.cc:1637,11,
+autocommit, if (lex->autocommit),sql/log_event_server.cc:1520,sql/log_event_server.cc:1521,12,
+automatic_sp_privileges,"if (sp_automatic_privileges && !opt_noacl &&
+check_routine_access(thd, DEFAULT_CREATE_PROC_ACLS,
+&lex->sphead->m_db, name,Sp_handler::handler(lex->sql_command), 1))",sql/sql_parse.cc:3131,sql/sql_parse.cc:3136,13,
+automatic_sp_privileges,"if (sp_result != SP_KEY_NOT_FOUND &&
+      sp_automatic_privileges && !opt_noacl &&
+      sp_revoke_privileges(thd, lex->spname->m_db.str, lex->spname->m_name.str,Sp_handler::handler(lex->sql_command)))",sql/sql_parse.cc:6370,sql/sql_parse.cc:6375,14,
+big_tables,"if (share->blob_fields || m_using_unique_constraint ||
+      (thd->variables.big_tables &&
+       !(m_select_options & SELECT_SMALL_RESULT)) ||
+      (m_select_options & TMP_TABLE_FORCE_MYISAM) ||
+      thd->variables.tmp_memory_table_size == 0)",sql/sql_select.cc:21351,sql/sql_select.cc:21356,15,sql/sql_select.cc:21366
+bulk_insert_buffer_size,if (rows && rows*total_keylength < cache_size),storage/maria/ma_write.c:1770,storage/maria/ma_write.c:1771,16,storage/maria/ma_write.c:1773
+bulk_insert_buffer_size,if (rows && rows*total_keylength < cache_size),storage/myisam/mi_write.c:997,storage/myisam/mi_write.c:998,17,storage/myisam/mi_write.c:1000
+check_constraint_checks,"if (check_constraints &&
+      !(in_use->variables.option_bits & OPTION_NO_CHECK_CONSTRAINT_CHECKS))",sql/table.cc:6430,sql/table.cc:6432,18,
+check_constraint_checks,if (get_flags(NO_CHECK_CONSTRAINT_CHECKS_F)),sql/log_event_server.cc:4814,sql/log_event_server.cc:4815,19,sql/log_event_server.cc:4817
+completion_type,if (tx_chain),sql/sql_parse.cc:5403,sql/sql_parse.cc:5405,20,sql/sql_parse.cc:5411
+concurrent_insert,if (lock_type == TL_WRITE_CONCURRENT_INSERT && ! lock->check_status),mysys/thr_lock.c:768,mysys/thr_lock.c:769,21,
+concurrent_insert, if (lock_type == TL_WRITE_CONCURRENT_INSERT),mysys/thr_lock.c:857,mysys/thr_lock.c:859,22,
+concurrent_insert,if (using_concurrent_insert),mysys/thr_lock.c:920,mysys/thr_lock.c:926,23,
+concurrent_insert,"if (duplic == DUP_UPDATE ||
+      (duplic == DUP_REPLACE && *lock_type == TL_WRITE_CONCURRENT_INSERT))",sql/sql_insert.cc:441,sql/sql_insert.cc:443,24,
+concurrent_insert,"if (!res && first_table->lock_type ==  TL_WRITE_CONCURRENT_INSERT &&
+            thd->lock)",sql/sql_parse.cc:4605,sql/sql_parse.cc:4600,25,
+concurrent_insert," if ((lock_type >= TL_WRITE_CONCURRENT_INSERT &&
+         lock_type <= TL_WRITE) && !thd_in_lock_tables(thd)
+        && !thd_tablespace_op(thd))",storage/blackhole/ha_blackhole.cc:224,storage/blackhole/ha_blackhole.cc:225,26,
+concurrent_insert,if (lock_type == TL_WRITE_CONCURRENT_INSERT),storage/maria/ha_maria.cc:3241,storage/maria/ha_maria.cc:3243,27,
+concurrent_insert,if (maria_concurrent_insert),storage/maria/ma_open.c:1078,storage/maria/ma_open.c:1080,28,
+concurrent_insert, if (concurrent_insert || !info->autocommit),/storage/maria/ma_state.c:642,/storage/maria/ma_state.c:644,29,/storage/maria/ma_state.c:649
+concurrent_insert,if (share->concurrent_insert),storage/myisam/ft_nlq_search.c:161,storage/myisam/ft_nlq_search.c:162,30,
+concurrent_insert,if (concurrent_insert),storage/myisam/mi_locking.c:307,storage/myisam/mi_locking.c:308,31,
+connect_timeout,if (!timeout_sec || (timeout_sec > INT_MAX/1000)),sql-common/client.c:199,sql-common/client.c:200,32,sql-common/client.c:202
+connect_timeout," if (mysql->options.connect_timeout &&
+      (vio_io_wait(net->vio, VIO_IO_EVENT_READ,
+                   get_vio_connect_timeout(mysql)) < 1))",sql-common/client.c:2970,sql-common/client.c:2974,33,
+default_password_lifetime,if (!interval),sql/sql_acl.cc:14387,sql/sql_acl.cc:14388,34,
+default_regex_flags,if (src & (1ULL << i)),sql/sys_vars.cc:6635,sql/sys_vars.cc:6637,35,
+default_week_format,if (!(week_format & WEEK_MONDAY_FIRST)),sql/item_timefunc.cc:1046,sql/item_timefunc.cc:1047,36,
+delay_key_write,"if (((open_flags & HA_OPEN_DELAY_KEY_WRITE) ||
+      (share->options & HA_OPTION_DELAY_KEY_WRITE)) &&
+      myisam_delay_key_write)",storage/myisam/mi_open.c:661,storage/myisam/mi_open.c:664,37,
+delay_key_write,if (options & HA_OPTION_DELAY_KEY_WRITE),storage/myisam/ha_myisam.cc:2334,storage/myisam/ha_myisam.cc:2335,38,
+delay_key_write,if (file->s->delay_key_write),storage/myisam/ha_myisam.cc:958,storage/myisam/ha_myisam.cc:959,39,
+delay_key_write,"if ((share->options & HA_OPTION_DELAY_KEY_WRITE) &&
+      maria_delay_key_write)",storage/maria/ma_open.c:181,storage/maria/ma_open.c:183,40,
+delay_key_write,if (open_flags & HA_OPEN_DELAY_KEY_WRITE),storage/maria/ma_open.c:980,storage/maria/ma_open.c:981,41,
+delay_key_write,"if (create_info->table_options &
+      (HA_OPTION_DELAY_KEY_WRITE | HA_OPTION_NO_DELAY_KEY_WRITE))",sql/sql_table.cc:9027,sql/sql_table.cc:9029,42,
+binlog_format,  if (startup_pre_reqs.binlog_format != BINLOG_FORMAT_ROW),plugin/group_replication/src/plugin.cc:2378,plugin/group_replication/src/plugin.cc:2379,43,plugin/group_replication/src/plugin.cc:2383
+binlog_format,"if (thd->lex->sql_command == SQLCOM_CREATE_TABLE &&
+!thd->lex->select_lex->field_list_is_empty() && !(thd->lex->create_info->options & HA_LEX_CREATE_TMP_TABLE) &&thd->is_current_stmt_binlog_format_row())",sql/binlog.cc:2530,sql/binlog.cc:2539,44,sql/binlog.cc:2541
+binlog_format, if (thd->variables.binlog_format == BINLOG_FORMAT_STMT)) ,sql/binlog.cc:2614,sql/binlog.cc:2621,45,sql/binlog.cc:2627
+binlog_format, if (mysql_bin_log.is_open() && (variables.option_bits & OPTION_BIN_LOG) &&!(variables.binlog_format == BINLOG_FORMAT_STMT &&!binlog_filter>db_ok(m_db.str))),sql/binlog.cc:9933,sql/binlog.cc:9941,46,sql/binlog.cc:10486
+binlog_format,if (variables.binlog_format != BINLOG_FORMAT_ROW && tables),sql/binlog.cc:10021,sql/binlog.cc:10028,47,sql/binlog.cc:10073
+binlog_format," if (variables.binlog_format == BINLOG_FORMAT_ROW &&
+sqlcom_can_generate_row_events(this->lex>sql_command))",sql/binlog.cc:10294,sql/binlog.cc:10300,48,sql/binlog.cc:10301
+binlog_format,if (variables.binlog_format == BINLOG_FORMAT_STMT),sql/binlog.cc:10333,sql/binlog.cc:10334,49,sql/binlog.cc:10365
+binlog_format,"if (variables.binlog_format == BINLOG_FORMAT_ROW &&
+        (lex->sql_command == SQLCOM_UPDATE ||
+         lex->sql_command == SQLCOM_UPDATE_MULTI ||
+         lex->sql_command == SQLCOM_DELETE ||
+         lex->sql_command == SQLCOM_DELETE_MULTI)) ",sql/binlog.cc:10454,sql/binlog.cc:10459,50,sql/binlog.cc:10486
+binlog_format,"if (variables.binlog_format == BINLOG_FORMAT_STMT &&
+        (in_multi_stmt_transaction_mode() || in_sub_stmt)) ",sql/binlog.cc:10653,sql/binlog.cc:10655,51,sql/binlog.cc:10661
+binlog_format,if (is_current_stmt_binlog_format_row()) ,sql/binlog.cc:11511,sql/binlog.cc:11511,52,sql/binlog.cc:11509
+binlog_format,"if (!m_deterministic && !trust_function_creators &&
+  (access == SP_CONTAINS_SQL || access == SP_MODIFIES_SQL_DATA) &&(mysql_bin_log.is_open() &&
+thd->variables.binlog_format == BINLOG_FORMAT_STMT))",/sql/item_func.cc:8094,/sql/item_func.cc:8095,53,/sql/item_func.cc:8104
+binlog_format,if (global_system_variables.binlog_format == BINLOG_FORMAT_STMT),sql/mysqld.cc:5841,sql/mysqld.cc:5842,54,sql/mysqld.cc:5844
+binlog_format,if (log_on == false || thd->variables.binlog_format == BINLOG_FORMAT_ROW),sql/sql_base.cc:4332,sql/sql_base.cc:4333,55,sql/sql_base.cc:4342
+binlog_format,"  if ((alter_info.flags & Alter_info::ADD_FOREIGN_KEY) &&
+ (create_info.db_type->flags & HTON_SUPPORTS_ATOMIC_DDL) &&mysql_bin_log.is_open() &&
+ (thd->variables.option_bits & OPTION_BIN_LOG) &&
+thd->variables.binlog_format ==BINLOG_FORMAT_ROW)",sql/sql_cmd_ddl_table.cc:253,sql/sql_cmd_ddl_table.cc:254,56,sql/sql_cmd_ddl_table.cc:259
+binlog_format," if (thd->query_name_consts && mysql_bin_log.is_open() && thd->variables.binlog_format == BINLOG_FORMAT_STMT &&!mysql_bin_log.is_query_in_union(thd, thd->query_id))",sql/sql_cmd_ddl_table.cc:275,sql/sql_cmd_ddl_table.cc:276,57,sql/sql_cmd_ddl_table.cc:301
+binlog_format,"if (!using_limit && const_cond_result && !no_rows &&
+      !(specialflag & SPECIAL_NO_NEW_FUNC) &&
+      ((!thd->is_current_stmt_binlog_format_row() ||  
+        thd->is_current_stmt_binlog_disabled()) &&    
+       !has_delete_triggers)) ",sql/sql_delete.cc:248,sql/sql_delete.cc:253,58,sql/sql_delete.cc:289
+binlog_format, if (!thd->is_current_stmt_binlog_format_row() || table->s->tmp_table),sql/sql_insert.cc:2985,sql/sql_insert.cc:2986,59,sql/sql_insert.cc:3010
+binlog_format,if (thd->is_current_stmt_binlog_format_row()),sql/sql_load.cc:643,sql/sql_load.cc:644,60,sql/sql_load.cc:651
+binlog_format," if (thd->variables.binlog_format == BINLOG_FORMAT_STMT &&
+      thd->lex->drop_temporary && (thd->in_sub_stmt & SUB_STMT_FUNCTION) &&
+      thd->binlog_evt_union.do_union) ",sql/sql_table.cc:1694,sql/sql_table.cc:1704,61,sql/sql_table.cc:1707
+binlog_format,"if (!thd->is_current_stmt_binlog_format_row() ||
+        (thd->is_current_stmt_binlog_format_row() &&
+         !(create_info->options & HA_LEX_CREATE_TMP_TABLE)))",sql/sql_table.cc:9867,sql/sql_table.cc:9870,62,sql/sql_table.cc:9876
+binlog_format," if (!thd->is_current_stmt_binlog_disabled() &&
+      thd->is_current_stmt_binlog_format_row())",sql/sql_table.cc:10063,sql/sql_table.cc:10680,63,sql/sql_table.cc:10767
+binlog_format,if (thd->variables.binlog_format == BINLOG_FORMAT_STMT),sql/sql_table.cc:15733,sql/sql_table.cc:15734,64,sql/sql_table.cc:15741
+binlog_format,"if (!m_auto_increment_safe_stmt_log_lock &&
+      thd->lex->sql_command != SQLCOM_INSERT &&
+      binlog_format != BINLOG_FORMAT_UNSPEC &&
+      binlog_format != BINLOG_FORMAT_ROW)",sql/partitioning/partition_handler.cc:731,sql/partitioning/partition_handler.cc:736,65,sql/partitioning/partition_handler.cc:740
+binlog_format,if (lock_type == F_WRLCK && !(table_flags() & HA_BINLOG_STMT_CAPABLE) &&thd_binlog_format(thd) == BINLOG_FORMAT_STMT &&thd_binlog_filter_ok(thd) && thd_sqlcom_can_generate_row_events(thd)),storage/innobase/handler/ha_innodb.cc:17981,storage/innobase/handler/ha_innodb.cc:17983,66,storage/innobase/handler/ha_innodb.cc:17999
+binlog_format,"if (!(thd_test_options(thd, OPTION_BIN_LOG)) ||
+        thd->variables.binlog_format == BINLOG_FORMAT_STMT) ",storage/ndb/plugin/ha_ndbcluster.cc:7336,storage/ndb/plugin/ha_ndbcluster.cc:7337,67,storage/ndb/plugin/ha_ndbcluster.cc:7340
+binlog_format,  if (global_system_variables.binlog_format == BINLOG_FORMAT_STMT) ,storage/ndb/plugin/ha_ndbcluster.cc:12421,storage/ndb/plugin/ha_ndbcluster.cc:12425,68,storage/ndb/plugin/ha_ndbcluster.cc:12421
+binlog_format,if (thd->variables.binlog_format == BINLOG_FORMAT_STMT),storage/ndb/plugin/ha_ndbcluster.cc:12850,storage/ndb/plugin/ha_ndbcluster.cc:12851,69,storage/ndb/plugin/ha_ndbcluster.cc:12850
+binlog_error_action,if (binlog_error_action == ABORT_SERVER),sql/binlog.cc:3760,sql/binlog.cc:3761,70,sql/binlog.cc:3768
+binlog_error_action,if (binlog_error_action == ABORT_SERVER) ,sql/binlog.cc:5025,sql/binlog.cc:5026,71,sql/binlog.cc:5033
+binlog_error_action,if (binlog_error_action != ABORT_SERVER),sql/binlog.cc:6474,sql/binlog.cc:6475,72,sql/binlog.cc:6474
+binlog_error_action,if (binlog_error_action == ABORT_SERVER),sql/binlog.cc:6614,sql/binlog.cc:6615,73,sql/binlog.cc:6612
+binlog_error_action,if (binlog_error_action == ABORT_SERVER),sql/binlog.cc:8688,sql/binlog.cc:8689,74,sql/binlog.cc:8693
+binlog_error_action," if ((opt_binlog_order_commits || Clone_handler::need_commit_order()) &&
+      (sync_error == 0 || binlog_error_action != ABORT_SERVER))",sql/binlog.cc:8896,sql/binlog.cc:8897,75,sql/binlog.cc:8936
+binlog_direct_non_transactional_updates,"  if (lex->is_mixed_stmt_unsafe(multi_stmt_trans, binlog_direct, trans_table,
+                                  tx_isolation))",sql/binlog.cc:10248,sql/binlog.cc:10250,76,sql/binlog.cc:10253
+binlog_encryption,if (rpl_encryption.is_enabled()),sql/binlog_ostream.cc:205,sql/binlog_ostream.cc:206,77,sql/binlog_ostream.cc:219
+binlog_encryption,if (rpl_encryption.is_enabled()),sql/binlog_ostream.cc:132,sql/binlog_ostream.cc:133,78,sql/binlog_ostream.cc:136
+binlog_encryption,if (!existing && rpl_encryption.is_enabled()),sql/binlog.cc:296,sql/binlog.cc:297,79,sql/binlog.cc:304
+binlog_encryption,if (!rpl_encryption.is_enabled()),sql/sql_alter_instance.cc:214,sql/sql_alter_instance.cc:215,80,sql/sql_alter_instance.cc:219
+binlog_checksum,"if (alg != binary_log::BINLOG_CHECKSUM_ALG_UNDEF &&
+      (event_type == binary_log::FORMAT_DESCRIPTION_EVENT ||
+       alg != binary_log::BINLOG_CHECKSUM_ALG_OFF))",sql/binlog_reader.cc:197,sql/binlog_reader.cc:200,81,sql/binlog_reader.cc:197
+binlog_checksum," if (ev->common_footer->checksum_alg != binary_log::BINLOG_CHECKSUM_ALG_OFF &&
+      ev->common_footer->checksum_alg != binary_log::BINLOG_CHECKSUM_ALG_UNDEF)",sql/binlog_reader.cc:327,sql/binlog_reader.cc:329,82,sql/binlog_reader.cc:327
+binlog_checksum,if (relay_log_checksum_alg == binary_log::BINLOG_CHECKSUM_ALG_UNDEF),sql/binlog.cc:4855,sql/binlog.cc:4857,83,sql/binlog.cc:4855
+binlog_checksum,if (checksum_alg_reset != binary_log::BINLOG_CHECKSUM_ALG_UNDEF) ,sql/binlog.cc:6553,sql/binlog.cc:6554,84,sql/binlog.cc:6553
+binlog_checksum, if (common_footer->checksum_alg != binary_log::BINLOG_CHECKSUM_ALG_UNDEF),sql/log_event.cc:1213,sql/log_event.cc:1214,85,sql/log_event.cc:1219
+binlog_checksum,if (common_footer->checksum_alg == binary_log::BINLOG_CHECKSUM_ALG_UNDEF),sql/log_event.cc:1231,sql/log_event.cc:1232,86,
+binlog_checksum," if (common_footer->checksum_alg != binary_log::BINLOG_CHECKSUM_ALG_OFF &&
+      common_footer->checksum_alg != binary_log::BINLOG_CHECKSUM_ALG_UNDEF)",sql/log_event.cc:1414,sql/log_event.cc:1415,87,sql/log_event.cc:1425
+binlog_checksum,if (fd_event->footer()->checksum_alg != binary_log::BINLOG_CHECKSUM_ALG_OFF),sql/log_event.cc:5216,sql/log_event.cc:5217,88,sql/log_event.cc:5216
+binlog_checksum,"if (m_slave_checksum_alg == binary_log::BINLOG_CHECKSUM_ALG_UNDEF &&
+      event_checksum_on()) ",sql/rpl_binlog_sender.cc:1106,sql/rpl_binlog_sender.cc:1112,89,sql/rpl_binlog_sender.cc:1116
+binlog_checksum,"if (new_fdle->common_footer->checksum_alg ==
+          binary_log::BINLOG_CHECKSUM_ALG_UNDEF)",sql/rpl_slave.cc:7736,sql/rpl_slave.cc:7737,90,sql/rpl_slave.cc:7736
+big_tables,if ((thd->variables.big_tables) && !(select_options & SELECT_SMALL_RESULT)),/sql/sql_tmp_table.cc:1988,sql/sql_tmp_table.cc:1989,91,sql/sql_tmp_table.cc:1988
+auto_generate_certs,if (opt_auto_generate_certs == true),sql/auth/sql_authentication.cc:5136,sql/auth/sql_authentication.cc:5142,92,sql/auth/sql_authentication.cc:5204
+automatic_sp_privileges," if (sp_automatic_privileges && !opt_noacl &&
+  check_routine_access( thd, DEFAULT_CREATE_PROC_ACLS, lex->sphead->m_db.str, name,lex->sql_command == SQLCOM_CREATE_PROCEDURE, true)) ",sql/sql_parse.cc:4128,sql/sql_parse.cc:4132,93,sql/sql_parse.cc:4143
+automatic_sp_privileges,"  if (sp_result != SP_DOES_NOT_EXISTS && sp_automatic_privileges &&
+ !opt_noacl && sp_revoke_privileges(thd, db, name,lex->sql_command == SQLCOM_DROP_PROCEDURE))",sql/sql_parse.cc:4248,sql/sql_parse.cc:4252,94,sql/sql_parse.cc:4258
+avoid_temporal_upgrade,"if ((error = check_table_for_old_types(table, check_temporal_upgrade)))",sql/handler.cc:4644,sql/handler.cc:4645,95,sql/handler.cc:4646
+avoid_temporal_upgrade," if ((check_table_for_old_types(table->table, check_temporal_upgrade) ==HA_ADMIN_NEEDS_ALTER) ||
+(table->table->file->ha_check_for_upgrade(check_opt) ==
+   HA_ADMIN_NEEDS_ALTER)) ",sql/sql_admin.cc:899,sql/sql_admin.cc:903,96,sql/sql_admin.cc:899
+avoid_temporal_upgrade,if (check_temporal_upgrade),sql/sql_table.cc:16395,sql/sql_table.cc:16396,97,sql/sql_table.cc:16404
+max_heap_table_size,if (rowlen * distinct_rowcount < join->thd->variables.max_heap_table_size),sql/sql_optimizer.cc:10631,sql/sql_optimizer.cc:10632,98,sql/sql_optimizer.cc:10634
+max_heap_table_size,if (tab->table()->s->reclength * inner_query_rowcount <thd->variables.max_heap_table_size),sql/sql_planner.cc:917,sql/sql_planner.cc:919,99,sql/sql_planner.cc:921
+max_heap_table_size, if (outer_fanout * rowsize < thd->variables.max_heap_table_size),sql/sql_planner.cc:3977,sql/sql_planner.cc:3978,100,sql/sql_planner.cc:3980
+tmp_table_size, if (thd->variables.tmp_table_size == ~(ulonglong)0),sql/sql_tmp_table.cc:2123,sql/sql_tmp_table.cc:2124,101,sql/sql_tmp_table.cc:2126
+long_query_time, if (my_micro_time() > utime_after_lock + variables.long_query_time),sql/sql_class.cc:2833,sql/sql_class.cc:2834,102,sql/sql_class.cc:2833
+select_limit, if (!(unit->global_parameters()->select_limit = new Item_int(1))) ,sql/item_subselect.cc:376,sql/item_subselect.cc:376,103,sql/item_subselect.cc:377
+select_limit,if (unit->global_parameters()->select_limit == nullptr ||unit->global_parameters()->select_limit->val_uint() > 0),sql/item_subselect.cc:1464,sql/item_subselect.cc:1465,104,sql/item_subselect.cc:1470
+select_limit, if (select_limit != nullptr),sql/sql_lex.cc:2406,sql/sql_lex.cc:2407,105,sql/sql_lex.cc:2411
+select_limit,if (!tab->condition() && select_limit != HA_POS_ERROR &&select_limit <= ft_func->get_count()),sql/sql_optimizer.cc:2042,sql/sql_optimizer.cc:2050,106,sql/sql_optimizer.cc:2069
+select_limit,"if (!is_force_index && (select_limit >= table_records) &&(tab->type() == JT_ALL &&
+join->primary_tables > join->const_tables + 1) &&((unsigned)best_key != table->s->primary_key ||!table->file->primary_key_is_clustered())) ",sql/sql_optimizer.cc:2267,sql/sql_optimizer.cc:2272,107,sql/sql_optimizer.cc:2276
+select_limit,if (tab->type() == JT_INDEX_SCAN &&select_limit < table->file->stats.records),sql/sql_optimizer.cc:2502,sql/sql_optimizer.cc:2505,108,sql/sql_optimizer.cc:2510
+select_limit,if (select_limit != nullptr) ,sql/sql_resolver.cc:869,sql/sql_resolver.cc:870,109,sql/sql_resolver.cc:879
+select_limit," if (select_limit != nullptr &&
+      (!select_limit->const_item() || select_limit->val_int() == 0))",sql/sql_resolver.cc:1298,sql/sql_resolver.cc:1299,110,sql/sql_resolver.cc:1301
+select_limit," if (is_covering || select_limit != HA_POS_ERROR ||
+          (ref_key < 0 && (group || table->force_index_order))) ",sql/sql_select.cc:4985,sql/sql_select.cc:4987,111,sql/sql_select.cc:4985
+select_limit,if (select_limit == HA_POS_ERROR),sql/sql_select.cc:4989,sql/sql_select.cc:4989,112,sql/sql_select.cc:4990
+select_limit,if (select_limit > table_records / rec_per_key),sql/sql_select.cc:5007,sql/sql_select.cc:5008,113,sql/sql_select.cc:5010
+select_limit,if (select_limit > refkey_rows_estimate),sql/sql_select.cc:5039,sql/sql_select.cc:5040,114,sql/sql_select.cc:5042
+select_limit,if (multitable && select->select_limit) ,sql/sql_update.cc:1658,sql/sql_update.cc:1659,115,sql/sql_update.cc:1662
+select_limit," if ((!view->is_view() && !view->belong_to_view) ||
+      thd->lex->sql_command == SQLCOM_INSERT ||
+      thd->lex->select_lex->select_limit == nullptr)",sql/sql_view.cc:1893,sql/sql_view.cc:1894,116,sql/sql_view.cc:1896
+select_limit,if (unit->select_limit_cnt != HA_POS_ERROR || unit->offset_limit_cnt != 0),sql/join_optimizer/join_optimizer.cc:845,sql/join_optimizer/join_optimizer.cc:846,117,sql/join_optimizer/join_optimizer.cc:845
+select_limit,if (unit->select_limit_cnt != HA_POS_ERROR || unit->offset_limit_cnt != 0) ,sql/sql_executor.cc:3133,sql/sql_executor.cc:3134,118,sql/sql_executor.cc:3140
+select_limit,if (unit->select_limit_cnt == 0 && !calc_found_rows) ,sql/sql_optimizer.cc:360,sql/sql_optimizer.cc:361,119,sql/sql_optimizer.cc:360
+max_join_size , if (global_system_variables.max_join_size == HA_POS_ERROR(0)),sql/mysqld.cc:0274,sql/mysqld.cc:0275,120,sql/mysqld.cc:0277
+max_join_size ,if (!(thd->variables.option_bits & OPTION_BIG_SELECTS) &&best_read > (double)thd->variables.max_join_size &&!thd->lex->is_explain()),sql/sql_optimizer.cc:064,sql/sql_optimizer.cc:067,121,sql/sql_optimizer.cc:072
+auto_increment_increment ,if (variables->auto_increment_increment == 1),sql/handler.cc:552,sql/handler.cc:553,122,sql/handler.cc:555
+auto_increment_increment ,if (variables->auto_increment_increment == 1),sql/handler.cc:605,sql/handler.cc:606,123,sql/handler.cc:607
+auto_increment_increment:uto_increment_offset,if (auto_increment_increment != 1 || auto_increment_offset != 1) ,sql/log_event.cc:497,sql/log_event.cc:498,124,sql/log_event.cc:503
+auto_increment_increment:uto_increment_offset,"if (print_event_info->auto_increment_increment != auto_increment_increment ||
+      print_event_info->auto_increment_offset != auto_increment_offset)",sql/log_event.cc:322,sql/log_event.cc:323,125,sql/log_event.cc:334
+lock_wait_timeout,"if (thd->mdl_context.acquire_locks(&mdl_requests,
+  thd->variables.lock_wait_timeout))",sql/dd_sql_view.cc:349,sql/dd_sql_view.cc:351,126,
+lock_wait_timeout," if (thd->mdl_context.acquire_lock(&schema_request,
+                                        thd->variables.lock_wait_timeout))",sql/dd_sql_view.cc:429,sql/dd_sql_view.cc:431,127,
+lock_wait_timeout,"if (thd>mdl_context.acquire_lock(&event_mdl_request,
+thd->variables.lock_wait_timeout))",sql/event_scheduler.cc:385,sql/event_scheduler.cc:387,128,
+lock_wait_timeout,"if (thd>mdl_context.acquire_lock(&event_mdl_request,
+thd->variables.lock_wait_timeout))",sql/lock.cc:758,sql/lock.cc:760,129,
+lock_wait_timeout,"if (thd>mdl_context.acquire_lock(&event_mdl_request,
+thd->variables.lock_wait_timeout))",sql/lock.cc:1016,sql/lock.cc:1017,130,
+lock_wait_timeout, if (lock_wait_timeout == 0),sql/mdl.cc:352,sql/mdl.cc:362,131,sql/mdl.cc:375
+lock_wait_timeout,"if (thd->mdl_context.acquire_lock(&table_request,
+thd->variables.lock_wait_timeout))",sql/mysqld.cc:1570,sql/mysqld.cc:1573,132,
+lock_wait_timeout, if (lock_wait_timeout < 100000000 && wait_time > (double)lock_wait_timeout &&!trx_is_high_priority(trx)),storage/innobase/lock/lock0wait.cc:51,storage/innobase/lock/lock0wait.cc:53,133,storage/innobase/lock/lock0wait.cc:58
+lock_wait_timeout,if (lock_wait_timeout < 100000),storage/innobase/dict/dict0dict.cc:929,storage/innobase/dict/dict0dict.cc:930,134,storage/innobase/dict/dict0dict.cc:932
+lock_wait_timeout,"if (thd>mdl_context.acquire_lock(&event_mdl_request,
+thd->variables.lock_wait_timeout))",sql/sql_table.cc:704,sql/sql_table.cc:706,135,
+lock_wait_timeout,"if (lock_tablespace_names(thd, &tablespace_set,
+  thd->variables.lock_wait_timeout))",sql/sql_table.cc:0550,sql/sql_table.cc:0552,136,
+sql_require_primary_key," if (!primary_key && !thd->is_dd_system_thread() &&
+      !thd->is_initialize_system_thread() &&
+      (file->ha_table_flags() &
+       (HA_BINLOG_ROW_CAPABLE | HA_BINLOG_STMT_CAPABLE)) != 0 &&
+      thd->variables.sql_require_primary_key)",sql/sql_table.cc:7972,sql/sql_table.cc:7973,137,
+sql_require_primary_key,"if (!dd::has_primary_key(*m_table_object) &&
+      thd->variables.sql_require_primary_key) ",sql/dd/impl/sdi_api.cc:98,sql/dd/impl/sdi_api.cc:99,138,
+table_encryption_privilege_check,"if (opt_table_encryption_privilege_check &&
+      encrypt_schema != thd->variables.default_table_encryption &&
+      check_table_encryption_admin_access(thd))",sql/sql_db.cc:358,sql/sql_db.cc:361,139,
+table_encryption_privilege_check,"if (create_info->encrypt_type.str && opt_table_encryption_privilege_check &&
+      dd::is_encrypted(create_info->encrypt_type) !=
+          thd->variables.default_table_encryption &&
+      check_table_encryption_admin_access(thd))",sql/sql_db.cc:523,sql/sql_db.cc:527,140,
+table_encryption_privilege_check,if (opt_table_encryption_privilege_check),sql/sql_rename.cc:653,sql/sql_rename.cc:654,141,sql/sql_rename.cc:659
+table_encryption_privilege_check, if (opt_table_encryption_privilege_check),sql/sql_table.cc:8950,sql/sql_table.cc:8951,142,sql/sql_table.cc:8956
+table_encryption_privilege_check, if (!show_warning && opt_table_encryption_privilege_check) ,sql/sql_table.cc:16684,sql/sql_table.cc:16685,143,sql/sql_table.cc:16691
+completion_type," bool tx_chain =
+          (lex->tx_chain == TVL_YES ||
+           (thd->variables.completion_type == 1 && lex->tx_chain != TVL_NO));",sql/sql_parse.cc:3980,,144,
+completion_type," bool tx_chain =
+          (lex->tx_chain == TVL_YES ||
+           (thd->variables.completion_type == 1 && lex->tx_chain != TVL_NO));",sql/sql_parse.cc:4004,,145,
+delay_key_write,"if (table_options.exists(""delay_key_write"")) ",sql/dd_table_share.cc:644,sql/dd_table_share.cc:645,146,
+delay_key_write,"if (p->exists(""delay_key_write""))",sql/item_strfunc.cc:4491,sql/item_strfunc.cc:4492,147,
+expire_logs_days,if (expire_logs_days || binlog_expire_logs_seconds),sql/binlog.cc:7078,sql/binlog.cc:7080,148,
+expire_logs_days,if (binlog_expire_logs_seconds_supplied && expire_logs_days_supplied),sql/mysqld.cc:6355,sql/mysqld.cc:6356,149,sql/mysqld.cc:6361
+gtid_next,if (head->variables.gtid_next.type == AUTOMATIC_GTID),sql/binlog.cc:1432,sql/binlog.cc:1433,150,sql/binlog.cc:1446
+gtid_next,"if (thd->variables.gtid_next.type == ASSIGNED_GTID &&
+             thd->owned_gtid_is_empty())",sql/binlog.cc:1760,sql/binlog.cc:1762,151,
+old_alter_table,"if ((thd->variables.old_alter_table &&
+    )",sql/sql_table.cc:16361,sql/sql_table.cc:16370,152,
+protocol_compression_algorithms,if (opt_protocol_compression_algorithms),sql/mysqld.cc:4610,sql/mysqld.cc:4611,153,
+protocol_compression_algorithms," if (opt_protocol_compression_algorithms &&
+      opt_protocol_compression_algorithms[0] != 0)",sql/auth/sql_authentication.cc:1368,sql/auth/sql_authentication.cc:1370,154,
+binlog_checksum,"if (uint4korr(&buf[0]) == 0 &&
+          checksum_alg == binary_log::BINLOG_CHECKSUM_ALG_OFF &&
+          mi->rli->relay_log.relay_log_checksum_alg !=
+              binary_log::BINLOG_CHECKSUM_ALG_OFF) ",sql/rpl_slave.cc:7662,sql/rpl_slave.cc:7666,155,sql/rpl_slave.cc:7688
+foreign_key_checks," if (!(thd->variables.option_bits & OPTION_NO_FOREIGN_KEY_CHECKS) &&
+        table->s->foreign_keys > 0) ",sql/rpl_write_set_handler.cc:738,sql/rpl_write_set_handler.cc:739,156,
+foreign_key_checks,"  if ((!(thd->variables.option_bits & OPTION_NO_FOREIGN_KEY_CHECKS) ||
+         prelocking_ctx->sql_command == SQLCOM_LOCK_TABLES ||
+         table_list->prelocking_placeholder) &&
+        !(table_list->table->s->tmp_table)) ",sql/sql_base.cc:6144,sql/sql_base.cc:6148,157,
+foreign_key_checks,if (thd->variables.option_bits & OPTION_NO_FOREIGN_KEY_CHECKS),sql/sql_table.cc:2424,sql/sql_table.cc:2424,158,
+foreign_key_checks, if (!(thd->variables.option_bits & OPTION_NO_FOREIGN_KEY_CHECKS)) ,sql/sql_table.cc:6721,sql/sql_table.cc:6722,159,
+foreign_key_checks,if (!(thd->variables.option_bits & OPTION_NO_FOREIGN_KEY_CHECKS)) ,sql/sql_truncate.cc:528,sql/sql_truncate.cc:529,160,
+gtid_mode,if (gtid_mode == Gtid_mode::ON || gtid_mode == Gtid_mode::ON_PERMISSIVE) ,sql/binlog.cc:7263,sql/binlog.cc:7264,161,
+"gtid_mode,gtid_next"," if ((gtid_next_type == AUTOMATIC_GTID &&
+       gtid_mode >= Gtid_mode::ON_PERMISSIVE) ||
+      gtid_next_type == ASSIGNED_GTID ||
+      gtid_consistency_mode == GTID_CONSISTENCY_MODE_ON) ",sql/binlog.cc:10551,sql/binlog.cc:10555,162,sql/binlog.cc:10573
+gtid_mode, if (global_gtid_mode.get() == Gtid_mode::OFF),sql/item_func.cc:4847,sql/item_func.cc:4848,163,sql/item_func.cc:4854
+gtid_mode,if (opt_bin_log && global_gtid_mode.get() != Gtid_mode::ON),sql/mysqld.cc:5878,sql/mysqld.cc:5879,164,sql/mysqld.cc:5882
+gtid_mode,"if (global_gtid_mode.get() == Gtid_mode::ON &&
+      _gtid_consistency_mode != GTID_CONSISTENCY_MODE_ON) ",sql/mysqld.cc:6319,sql/mysqld.cc:6321,165,
+gtid_mode,if (global_gtid_mode.get() == Gtid_mode::OFF),sql/rpl_gtid_execution.cc:109,sql/rpl_gtid_execution.cc:110,166,sql/rpl_gtid_execution.cc:115
+gtid_mode,if ((global_gtid_mode.get() != Gtid_mode::ON) || group_name.length() > 0) ,sql/rpl_slave.cc:557,sql/rpl_slave.cc:558,167,
+gtid_mode," if (global_gtid_mode.get() == Gtid_mode::ON &&
+      !channel_map.is_group_replication_channel_name(rli->get_channel())) ",sql/rpl_slave.cc:1121,sql/rpl_slave.cc:1122,168,
+keyring_operations, if (migrate_connect_options && disable_keyring_operations()),sql/migrate_keyring.cc:191,sql/migrate_keyring.cc:191,169,
+keyring_operations,"mysql_mutex_init(key_LOCK_keyring_operations, &LOCK_keyring_operations,MY_MUTEX_INIT_FAST);",sql/mysqld.cc:5020,,170,
+optimizer_search_depth,if (search_depth > 0),sql/sql_planner.cc:2049,sql/sql_planner.cc:2049,171,
+require_secure_transport,"if (opt_require_secure_transport &&
+          !is_secure_transport(thd->active_vio->type))",sql/auth/sql_authentication.cc:3550,sql/auth/sql_authentication.cc:3551,172,sql/auth/sql_authentication.cc:3556
+select_into_buffer_size,"f (init_io_cache(cache, file, thd->variables.select_into_buffer_size,
+WRITE_CACHE, 0L, true, MYF(MY_WME)))",sql/query_result.cc:242,sql/query_result.cc:244,173,sql/query_result.cc:249
+slave_allow_batching,if ((thd->variables.option_bits & OPTION_ALLOW_BATCH) ||(thd->slave_thread && opt_slave_allow_batching)),sql/sql_thd_api.cc:539,sql/sql_thd_api.cc:541,174,
+sql_buffer_result,"if ((group_list.empty() && (order.empty() || windowing) &&!select_distinct) ||(select_lex->active_options() &
+ (SELECT_BIG_RESULT | OPTION_BUFFER_RESULT)))",sql/sql_executor.cc:250,sql/sql_executor.cc:254,175,
+sql_buffer_result,"if (!tab->filesort && !tab->table()->s->keys &&
+            (!(select_lex->active_options() & OPTION_BUFFER_RESULT) ||
+             need_tmp_before_win || wno >= 1))",sql/sql_select.cc:4705,sql/sql_select.cc:4712,176,
+sql_notes,if (!(variables.option_bits & OPTION_SQL_NOTES)),sql/sql_class.cc:677,sql/sql_class.cc:677,177,
+sql_notes," if (!(variables.option_bits & OPTION_SQL_NOTES) &&
+      (level == Sql_condition::SL_NOTE))",sql/sql_class.cc:713,sql/sql_class.cc:715,178,
+require_row_format,"if (!print_event_info->require_row_format &&
+      (!print_event_info->thread_id_printed ||
+       ((common_header->flags & LOG_EVENT_THREAD_SPECIFIC_F) &&
+        thread_id != print_event_info->thread_id)))",sql/log_event.cc:4246,sql/log_event.cc:4251,179,
+require_row_format,if (thd->variables.require_row_format) ,sql/sql_parse.cc:2977,sql/sql_parse.cc:2978,180,sql/sql_parse.cc:2990
+require_row_format, if (lex_mi->require_row_format != -1) ,sql/rpl_slave.cc:9656,sql/rpl_slave.cc:9657,181,
+require_secure_transport," if (opt_require_secure_transport &&
+          !is_secure_transport(thd->active_vio->type))",sql/auth/sql_authentication.cc:3550,sql/auth/sql_authentication.cc:3551,182,sql/auth/sql_authentication.cc:3556
+resultset_metadata, if (packet_length >= 12),libmysql/libmysql.cc:1298,libmysql/libmysql.cc:1299,183,
+resultset_metadata, if (m_thd->variables.resultset_metadata == RESULTSET_METADATA_FULL),sql/protocol_classic.cc:3095,sql/protocol_classic.cc:3096,184,sql/protocol_classic.cc:3099
+resultset_metadata,ï»?switch (variables.resultset_metadata),/sql/sql_class.cc:2496,,185,
+resultset_metadata,if (mysql->client_flag & CLIENT_OPTIONAL_RESULTSET_METADATA),sql-common/client.cc:2664,sql-common/client.cc:2665,186,sql-common/client.cc:2667
+resultset_metadata,switch (mysql->resultset_metadata),sql-common/client.cc:2670,,187,
+secondary_engine_cost_threshold,"if (thd->m_current_query_cost <=
+      thd->variables.secondary_engine_cost_threshold)",sql/sql_select.cc:747,sql/sql_select.cc:748,188,sql/sql_select.cc:761
+select_into_disk_sync,if (thd->variables.select_into_disk_sync) ,sql/query_result.cc:249,sql/query_result.cc:250,189,
+select_into_disk_sync_delay,if (thd->variables.select_into_disk_sync_delay),sql/query_result.cc:251,sql/query_result.cc:252,190,
+session_track_gtids,if (m_curr_session_track_gtids == SESSION_TRACK_GTIDS_ALL_GTIDS),sql/rpl_context.cc:75,sql/rpl_context.cc:82,191,
+session_track_gtids,if (m_curr_session_track_gtids == SESSION_TRACK_GTIDS_OWN_GTID),sql/rpl_context.cc:101,sql/rpl_context.cc:102,192,sql/rpl_context.cc:133
+session_track_gtids,"if (m_enabled ==
+      (thd->variables.session_track_gtids != SESSION_TRACK_GTIDS_OFF))",sql/session_tracker.cc:1580,sql/session_tracker.cc:1582,193,sql/session_tracker.cc:1584
+slow_launch_time,if (launch_time >= slow_launch_time * 1000000ULL),sql/conn_handler/connection_handler_per_thread.cc:211,sql/conn_handler/connection_handler_per_thread.cc:212,194,
+sql_mode,if (sql_mode != nullptr) ,client/mysqlslap.cc:1500,client/mysqlslap.cc:1501,195,
+sql_mode, if (thd->variables.sql_mode & MODE_TIME_TRUNCATE_FRACTIONAL),sql/field.cc:4989,sql/field.cc:4990,196,
+sql_mode, if (thd->variables.sql_mode & MODE_TIME_TRUNCATE_FRACTIONAL),sql/field.cc:5149,sql/field.cc:5150,197,
+sql_mode,if (thd->variables.sql_mode & MODE_NO_ZERO_DATE),sql/field.cc:5618,sql/field.cc:5619,198,
+sql_mode," if (field_charset->pad_attribute == NO_PAD &&
+      !(table->in_use->variables.sql_mode & MODE_PAD_CHAR_TO_FULL_LENGTH)) ",sql/field.cc:6294,sql/field.cc:6300,199,
+sql_mode,"if ((nr = table->next_number_field->val_int()) != 0 ||
+      (table->autoinc_field_has_explicit_non_null_value &&thd->variables.sql_mode & MODE_NO_AUTO_VALUE_ON_ZERO))",sql/handler.cc:3706,sql/handler.cc:3712,200,sql/handler.cc:3741
+sql_mode, if (thd->variables.sql_mode & MODE_NO_ZERO_IN_DATE),sql/item_cmpfunc.cc:863,sql/item_cmpfunc.cc:864,201,
+sql_mode, if (thd->variables.sql_mode & MODE_NO_ZERO_IN_DATE),sql/item_create.cc:2060,sql/item_create.cc:2061,202,
+sql_mode,if (thd->variables.sql_mode & MODE_ERROR_FOR_DIVISION_BY_ZERO),sql/item_func.cc:730,sql/item_func.cc:731,203,
+sql_mode,if (sql_mode & MODE_NO_ZERO_IN_DATE),sql/item_timefunc.cc:847,sql/item_timefunc.cc:847,204,
+sql_mode,"if (exchange->field.escaped->length() &&
+      (exchange->escaped_given() ||
+       !(thd->variables.sql_mode & MODE_NO_BACKSLASH_ESCAPES)))",sql/query_result.cc:316,sql/query_result.cc:317,205,sql/query_result.cc:319
+sql_mode,"if (thd->variables.sql_mode & MODE_NO_ZERO_DATE &&
+      !thd->variables.explicit_defaults_for_timestamp) ",sql/sql_table.cc:8085,sql/sql_table.cc:8086,206,
+transaction_isolation,switch (thd->tx_isolation),/sql/handler.cc:8527,,207,
+transaction_isolation,"if ((thd->tx_isolation == ISO_SERIALIZABLE || issue_warning) &&
+        !(tl->referencing_view && tl->referencing_view->is_system_view))",sql/sql_base.cc:5670,sql/sql_base.cc:5672,208,
+updatable_views_with_limit,if (thd->variables.updatable_views_with_limit),/sql/sql_view.cc:1963,/sql/sql_view.cc:1965,209,/sql/sql_view.cc:1970
+use_secondary_engine,"  if (thd->secondary_engine_optimization() ==
+ Secondary_engine_optimization::PRIMARY_TENTATIVELY &&thd->variables.use_secondary_engine == SECONDARY_ENGINE_FORCED)",sql/sql_base.cc:6580,sql/sql_base.cc:6583,210,
+use_secondary_engine," if (thd->variables.use_secondary_engine == SECONDARY_ENGINE_FORCED &&  sql_cmd->sql_command_code() == SQLCOM_SELECT &&                    
+lex->table_count >= 1) ",sql/sql_select.cc:300,sql/sql_select.cc:303,211,sql/sql_select.cc:310
+autocommit, if (opt_autocommit) ,client/mysqldump.cc:3810,client/mysqldump.cc:3811,212,
+autocommit,"if ((thd->variables.option_bits & OPTION_NOT_AUTOCOMMIT) &&
+      (opt_mi_repository_id == INFO_REPOSITORY_TABLE ||
+       opt_rli_repository_id == INFO_REPOSITORY_TABLE))",sql/rpl_slave.cc:3973,sql/rpl_slave.cc:3976,213,
+autocommit,if (!trx_is_autocommit_non_locking(trx)),storage/innobase/trx/trx0trx.cc:1314,storage/innobase/trx/trx0trx.cc:1319,214,storage/innobase/trx/trx0trx.cc:1336
+autocommit,if (trx_is_autocommit_non_locking(trx)),storage/innobase/trx/trx0trx.cc:1822,storage/innobase/trx/trx0trx.cc:1823,215,storage/innobase/trx/trx0trx.cc:1858
+binlog_checksum,"if (alg != binary_log::BINLOG_CHECKSUM_ALG_UNDEF &&
+      (event_type == binary_log::FORMAT_DESCRIPTION_EVENT ||
+       alg != binary_log::BINLOG_CHECKSUM_ALG_OFF))",sql/binlog_reader.cc:197,sql/binlog_reader.cc:200,216,
+binlog_checksum,if (have_checksum),sql/binlog.cc:1272,sql/binlog.cc:1273,217,
+binlog_checksum,if (checksum_alg_reset != binary_log::BINLOG_CHECKSUM_ALG_UNDEF) ,sql/binlog.cc:6553,sql/binlog.cc:6556,218,
+binlog_checksum,"if (m_slave_checksum_alg == binary_log::BINLOG_CHECKSUM_ALG_UNDEF &&
+      event_checksum_on()) ",sql/rpl_binlog_sender.cc:1107,sql/rpl_binlog_sender.cc:1108,219,sql/rpl_binlog_sender.cc:1116
+binlog_checksum,"if (uint4korr(&buf[0]) == 0 &&
+          checksum_alg == binary_log::BINLOG_CHECKSUM_ALG_OFF &&
+          mi->rli->relay_log.relay_log_checksum_alg !=
+              binary_log::BINLOG_CHECKSUM_ALG_OFF) ",sql/rpl_slave.cc:7662,sql/rpl_slave.cc:7666,220,sql/rpl_slave.cc:7688
+foreign_key_checks," if (!(thd->variables.option_bits & OPTION_NO_FOREIGN_KEY_CHECKS) &&
+        table->s->foreign_keys > 0) ",sql/rpl_write_set_handler.cc:738,sql/rpl_write_set_handler.cc:739,221,
+foreign_key_checks,"  if ((!(thd->variables.option_bits & OPTION_NO_FOREIGN_KEY_CHECKS) ||
+         prelocking_ctx->sql_command == SQLCOM_LOCK_TABLES ||
+         table_list->prelocking_placeholder) &&
+        !(table_list->table->s->tmp_table)) ",sql/sql_base.cc:6144,sql/sql_base.cc:6148,222,
+foreign_key_checks,if (thd->variables.option_bits & OPTION_NO_FOREIGN_KEY_CHECKS),sql/sql_table.cc:2424,sql/sql_table.cc:2424,223,
+foreign_key_checks, if (!(thd->variables.option_bits & OPTION_NO_FOREIGN_KEY_CHECKS)) ,sql/sql_table.cc:6721,sql/sql_table.cc:6722,224,
+foreign_key_checks,if (!(thd->variables.option_bits & OPTION_NO_FOREIGN_KEY_CHECKS)) ,sql/sql_truncate.cc:528,sql/sql_truncate.cc:529,225,
+gtid_mode,if (gtid_mode == Gtid_mode::ON || gtid_mode == Gtid_mode::ON_PERMISSIVE) ,sql/binlog.cc:7263,sql/binlog.cc:7264,226,
+"gtid_mode,gtid_next"," if ((gtid_next_type == AUTOMATIC_GTID &&
+       gtid_mode >= Gtid_mode::ON_PERMISSIVE) ||
+      gtid_next_type == ASSIGNED_GTID ||
+      gtid_consistency_mode == GTID_CONSISTENCY_MODE_ON) ",sql/binlog.cc:10551,sql/binlog.cc:10555,227,sql/binlog.cc:10573
+tmp_table_size, if (thd->variables.tmp_table_size == ~(ulonglong)0),sql/sql_tmp_table.cc:2123,sql/sql_tmp_table.cc:2124,228,sql/sql_tmp_table.cc:2126
+long_query_time, if (my_micro_time() > utime_after_lock + variables.long_query_time),sql/sql_class.cc:2833,sql/sql_class.cc:2834,229,sql/sql_class.cc:2833
+select_limit, if (!(unit->global_parameters()->select_limit = new Item_int(1))) ,sql/item_subselect.cc:376,sql/item_subselect.cc:376,230,sql/item_subselect.cc:377
+select_limit,if (unit->global_parameters()->select_limit == nullptr ||unit->global_parameters()->select_limit->val_uint() > 0),sql/item_subselect.cc:1464,sql/item_subselect.cc:1465,231,sql/item_subselect.cc:1470
+select_limit, if (select_limit != nullptr),sql/sql_lex.cc:2406,sql/sql_lex.cc:2407,232,sql/sql_lex.cc:2411
+select_limit,if (!tab->condition() && select_limit != HA_POS_ERROR &&select_limit <= ft_func->get_count()),sql/sql_optimizer.cc:2042,sql/sql_optimizer.cc:2050,233,sql/sql_optimizer.cc:2069
+select_limit,"if (!is_force_index && (select_limit >= table_records) &&(tab->type() == JT_ALL &&
+join->primary_tables > join->const_tables + 1) &&((unsigned)best_key != table->s->primary_key ||!table->file->primary_key_is_clustered())) ",sql/sql_optimizer.cc:2267,sql/sql_optimizer.cc:2272,234,sql/sql_optimizer.cc:2276
+select_limit,if (tab->type() == JT_INDEX_SCAN &&select_limit < table->file->stats.records),sql/sql_optimizer.cc:2502,sql/sql_optimizer.cc:2505,235,sql/sql_optimizer.cc:2510
+select_limit,if (select_limit != nullptr) ,sql/sql_resolver.cc:869,sql/sql_resolver.cc:870,236,sql/sql_resolver.cc:879
+select_limit," if (select_limit != nullptr &&
+      (!select_limit->const_item() || select_limit->val_int() == 0))",sql/sql_resolver.cc:1298,sql/sql_resolver.cc:1299,237,sql/sql_resolver.cc:1301
+select_limit," if (is_covering || select_limit != HA_POS_ERROR ||
+          (ref_key < 0 && (group || table->force_index_order))) ",sql/sql_select.cc:4985,sql/sql_select.cc:4987,238,sql/sql_select.cc:4985
+select_limit,if (select_limit == HA_POS_ERROR),sql/sql_select.cc:4989,sql/sql_select.cc:4989,239,sql/sql_select.cc:4990
+select_limit,if (select_limit > table_records / rec_per_key),sql/sql_select.cc:5007,sql/sql_select.cc:5008,240,sql/sql_select.cc:5010
+select_limit,if (select_limit > refkey_rows_estimate),sql/sql_select.cc:5039,sql/sql_select.cc:5040,241,sql/sql_select.cc:5042
+select_limit,if (multitable && select->select_limit) ,sql/sql_update.cc:1658,sql/sql_update.cc:1659,242,sql/sql_update.cc:1662
+select_limit," if ((!view->is_view() && !view->belong_to_view) ||
+      thd->lex->sql_command == SQLCOM_INSERT ||
+      thd->lex->select_lex->select_limit == nullptr)",sql/sql_view.cc:1893,sql/sql_view.cc:1894,243,sql/sql_view.cc:1896
+select_limit,if (unit->select_limit_cnt != HA_POS_ERROR || unit->offset_limit_cnt != 0),sql/join_optimizer/join_optimizer.cc:845,sql/join_optimizer/join_optimizer.cc:846,244,sql/join_optimizer/join_optimizer.cc:845
+select_limit,if (unit->select_limit_cnt != HA_POS_ERROR || unit->offset_limit_cnt != 0) ,sql/sql_executor.cc:3133,sql/sql_executor.cc:3134,245,sql/sql_executor.cc:3140
+select_limit,if (unit->select_limit_cnt == 0 && !calc_found_rows) ,sql/sql_optimizer.cc:360,sql/sql_optimizer.cc:361,246,sql/sql_optimizer.cc:360
+max_join_size , if (global_system_variables.max_join_size == HA_POS_ERROR(0)),sql/mysqld.cc:0274,sql/mysqld.cc:0275,247,sql/mysqld.cc:0277
+max_join_size ,if (!(thd->variables.option_bits & OPTION_BIG_SELECTS) &&best_read > (double)thd->variables.max_join_size &&!thd->lex->is_explain()),sql/sql_optimizer.cc:064,sql/sql_optimizer.cc:067,248,sql/sql_optimizer.cc:072
+auto_increment_increment ,if (variables->auto_increment_increment == 1),sql/handler.cc:552,sql/handler.cc:553,249,sql/handler.cc:555
+auto_increment_increment ,if (variables->auto_increment_increment == 1),sql/handler.cc:605,sql/handler.cc:606,250,sql/handler.cc:607
+auto_increment_increment:uto_increment_offset,if (auto_increment_increment != 1 || auto_increment_offset != 1) ,sql/log_event.cc:497,sql/log_event.cc:498,251,sql/log_event.cc:503
+auto_increment_increment:uto_increment_offset,"if (print_event_info->auto_increment_increment != auto_increment_increment ||
+      print_event_info->auto_increment_offset != auto_increment_offset)",sql/log_event.cc:322,sql/log_event.cc:323,252,sql/log_event.cc:334
+lock_wait_timeout,"if (thd->mdl_context.acquire_locks(&mdl_requests,
+  thd->variables.lock_wait_timeout))",sql/dd_sql_view.cc:349,sql/dd_sql_view.cc:351,253,
+lock_wait_timeout," if (thd->mdl_context.acquire_lock(&schema_request,
+                                        thd->variables.lock_wait_timeout))",sql/dd_sql_view.cc:429,sql/dd_sql_view.cc:431,254,
+lock_wait_timeout,"if (thd>mdl_context.acquire_lock(&event_mdl_request,
+thd->variables.lock_wait_timeout))",sql/event_scheduler.cc:385,sql/event_scheduler.cc:387,255,
+lock_wait_timeout,"if (thd>mdl_context.acquire_lock(&event_mdl_request,
+thd->variables.lock_wait_timeout))",sql/lock.cc:758,sql/lock.cc:760,256,
+lock_wait_timeout,"if (thd>mdl_context.acquire_lock(&event_mdl_request,
+thd->variables.lock_wait_timeout))",sql/lock.cc:1016,sql/lock.cc:1017,257,
+lock_wait_timeout, if (lock_wait_timeout == 0),sql/mdl.cc:352,sql/mdl.cc:362,258,sql/mdl.cc:375
+lock_wait_timeout,"if (thd->mdl_context.acquire_lock(&table_request,
+thd->variables.lock_wait_timeout))",sql/mysqld.cc:1570,sql/mysqld.cc:1573,259,
+lock_wait_timeout, if (lock_wait_timeout < 100000000 && wait_time > (double)lock_wait_timeout &&!trx_is_high_priority(trx)),storage/innobase/lock/lock0wait.cc:51,storage/innobase/lock/lock0wait.cc:53,260,storage/innobase/lock/lock0wait.cc:58
+lock_wait_timeout,if (lock_wait_timeout < 100000),storage/innobase/dict/dict0dict.cc:929,storage/innobase/dict/dict0dict.cc:930,261,storage/innobase/dict/dict0dict.cc:932
+lock_wait_timeout,"if (thd>mdl_context.acquire_lock(&event_mdl_request,
+thd->variables.lock_wait_timeout))",sql/sql_table.cc:704,sql/sql_table.cc:706,262,
+lock_wait_timeout,"if (lock_tablespace_names(thd, &tablespace_set,
+  thd->variables.lock_wait_timeout))",sql/sql_table.cc:0550,sql/sql_table.cc:0552,263,
+innodb_change_buffering_debug,"if ((m_mode == Page_fetch::IF_IN_POOL ||
+       m_mode == Page_fetch::IF_IN_POOL_OR_WATCH) &&
+      (ibuf_debug || buf_debug_execute_is_force_flush())) ",storage/innobase/buf/buf0buf.cc:999,storage/innobase/buf/buf0buf.cc:005,264,storage/innobase/buf/buf0buf.cc:077
+innodb_change_buffering_debug,if (ibuf_debug && !index->is_clustered()),storage/innobase/dict/dict0stats.cc:36,storage/innobase/dict/dict0stats.cc:37,265,storage/innobase/dict/dict0stats.cc:40
+innodb_change_buffering_debug,f (ibuf_debug) ,storage/innobase/ibuf/ibuf0ibuf.cc:445,storage/innobase/ibuf/ibuf0ibuf.cc:446,266,storage/innobase/ibuf/ibuf0ibuf.cc:449
+innodb_change_buffering_debug, if (ibuf_debug == 2),storage/innobase/ibuf/ibuf0ibuf.cc:946,storage/innobase/ibuf/ibuf0ibuf.cc:953,267,storage/innobase/ibuf/ibuf0ibuf.cc:962
+innodb_checkpoint_disabled,if (*(bool *)save && !srv_checkpoint_disabled) ,storage/innobase/handler/ha_innodb.cc:0906,storage/innobase/handler/ha_innodb.cc:0911,268,storage/innobase/handler/ha_innodb.cc:0906
+innodb_checkpoint_disabled, if (*(bool *)save && !srv_checkpoint_disabled),storage/innobase/handler/ha_innodb.cc:0936,storage/innobase/handler/ha_innodb.cc:0941,269,
+innodb_checkpoint_disabled,if (srv_checkpoint_disabled) ,storage/innobase/log/log0chkp.cc:35,storage/innobase/log/log0chkp.cc:37,270,storage/innobase/log/log0chkp.cc:43
+innodb_checkpoint_disabled, if (srv_checkpoint_disabled) ,storage/innobase/log/log0chkp.cc:34,storage/innobase/log/log0chkp.cc:35,271,storage/innobase/log/log0chkp.cc:39
+innodb_checksum_algorithm, switch ((srv_checksum_algorithm_t)srv_checksum_algorithm),storage/innobase/buf/buf0flu.cc:098,,272,
+innodb_checksum_algorithm," if (srv_checksum_algorithm == SRV_CHECKSUM_ALGORITHM_NONE ||
+      m_skip_checksum)",storage/innobase/buf/checksum.cc:11,storage/innobase/buf/checksum.cc:13,273,storage/innobase/buf/checksum.cc:16
+innodb_checksum_algorithm,if (curr_algo == SRV_CHECKSUM_ALGORITHM_NONE) ,storage/innobase/buf/checksum.cc:00,storage/innobase/buf/checksum.cc:01,274,storage/innobase/buf/checksum.cc:04
+innodb_checksum_algorithm,switch (curr_algo),storage/innobase/buf/checksum.cc:64,,275,
+innodb_checksum_algorithm,switch (curr_algo),storage/innobase/buf/checksum.cc:18,,276,
+innodb_checksum_algorithm,switch (curr_algo),storage/innobase/buf/checksum.cc:19,,277,
+innodb_checksum_algorithm,switch (curr_algo),storage/innobase/page/page0page.cc:593,,278,
+max_allowed_packet,if (str->length()>current_thd->variables.max_allowed_packet),sql/item_geofunc.cc:476,sql/item_geofunc.cc:477,279,sql/item_geofunc.cc:484
+max_allowed_packet," if (!res || res->length() >(uint)base64_encode_max_arg_length() ||
+(too_long =((length = base64_needed_encoded_length((uint64)res->length())) >
+current_thd->variables.max_allowed_packet)) || tmp_value.alloc((uint)length))",sql/item_strfunc.cc:00,sql/item_strfunc.cc:05,280,sql/item_strfunc.cc:11
+max_allowed_packet,if (tmp_value.length() + sep_str->length() + res2->length() >thd->variables.max_allowed_packet) ,sql/item_strfunc.cc:081,sql/item_strfunc.cc:083,281,sql/item_strfunc.cc:085
+max_allowed_packet,if (length > current_thd->variables.max_allowed_packet / (uint)count) ,sql/item_strfunc.cc:521,sql/item_strfunc.cc:522,282,sql/item_strfunc.cc:524
+max_allowed_packet,if (tot_length > current_thd->variables.max_allowed_packet),sql/item_strfunc.cc:582,sql/item_strfunc.cc:583,283,sql/item_strfunc.cc:586
+max_allowed_packet,if (byte_count > current_thd->variables.max_allowed_packet),sql/item_strfunc.cc:685,sql/item_strfunc.cc:686,284,sql/item_strfunc.cc:688
+max_allowed_packet,if (byte_count > current_thd->variables.max_allowed_packet),sql/item_strfunc.cc:918,sql/item_strfunc.cc:919,285,sql/item_strfunc.cc:922
+max_allowed_packet," if (cast_length >= 0 &&
+      static_cast<ulonglong>(cast_length) > thd->variables.max_allowed_packet) ",sql/item_strfunc.cc:435,sql/item_strfunc.cc:437,286,sql/item_strfunc.cc:441
+max_allowed_packet, if (tmp_value.length() > current_thd->variables.max_allowed_packet),sql/item_strfunc.cc:605,sql/item_strfunc.cc:606,287,sql/item_strfunc.cc:610
+max_allowed_packet,if (new_size > current_thd->variables.max_allowed_packet) ,sql/item_strfunc.cc:011,sql/item_strfunc.cc:012,288,sql/item_strfunc.cc:018
+max_allowed_packet, if (str_value.length() + length > current_thd->variables.max_allowed_packet),sql/item.cc:793,sql/item.cc:794,289,sql/item.cc:802
+max_allowed_packet:et_buffer_length,"if (global_system_variables.net_buffer_length >
+      global_system_variables.max_allowed_packet) ",sql/mysqld.cc:10236,sql/mysqld.cc:10237,290,sql/mysqld.cc:10247
+max_allowed_packet, if (mysql->options.max_allowed_packet),sql-common/client.cc:6201,sql-common/client.cc:6202,291,sql-common/client.cc:6204
+innodb_cmp_per_index_enabled,if (!srv_cmp_per_index_enabled && *(bool *)save) ,storage/innobase/handler/ha_innodb.cc:19875,storage/innobase/handler/ha_innodb.cc:19876,292,storage/innobase/handler/ha_innodb.cc:19879
+innodb_cmp_per_index_enabled,if (cmp_per_index_enabled),storage/innobase/page/page0zip.cc:1037,storage/innobase/page/page0zip.cc:1038,293,storage/innobase/page/page0zip.cc:1044
+innodb_cmp_per_index_enabled,if (cmp_per_index_enabled) ,storage/innobase/page/page0zip.cc:1184,storage/innobase/page/page0zip.cc:1185,294,storage/innobase/page/page0zip.cc:1190
+innodb_cmp_per_index_enabled,if (cmp_per_index_enabled),storage/innobase/page/page0zip.cc:1253,storage/innobase/page/page0zip.cc:1254,295,storage/innobase/page/page0zip.cc:1253
+innodb_cmp_per_index_enabled,if (srv_cmp_per_index_enabled),storage/innobase/page/page0zip.cc:1294,storage/innobase/page/page0zip.cc:1295,296,storage/innobase/page/page0zip.cc:1294
+innodb_commit_concurrency, if (commit_threads <= innobase_commit_concurrency),storage/innobase/handler/ha_innodb.cc:5378,storage/innobase/handler/ha_innodb.cc:5379,297,storage/innobase/handler/ha_innodb.cc:5385
+innodb_commit_concurrency,if (innobase_commit_concurrency > 0),storage/innobase/handler/ha_innodb.cc:5423,storage/innobase/handler/ha_innodb.cc:5424,298,storage/innobase/handler/ha_innodb.cc:5435
+max_error_count," if (m_allow_unlimited_conditions ||
+      m_conditions_list.elements() < thd->variables.max_error_count) ",sql/sql_error.cc:599,sql/sql_error.cc:601,299,sql/sql_error.cc:606
+net_buffer_length,"if (mysql_options(nullptr, MYSQL_OPT_MAX_ALLOWED_PACKET,&opt_max_allowed_packet) ||mysql_options(nullptr, MYSQL_OPT_NET_BUFFER_LENGTH,&opt_net_buffer_length))",client/mysqldump.cc:994,client/mysqldump.cc:998,300,
+net_buffer_length, if (total_length + row_length < opt_net_buffer_length),client/mysqldump.cc:3993,client/mysqldump.cc:3994,301,client/mysqldump.cc:3998
+net_buffer_length,if (thd->get_protocol_classic()->get_output_packet()->alloc(thd->variables.net_buffer_length)),sql/sql_connect.cc:629,sql/sql_connect.cc:642,302,sql/sql_connect.cc:646
+sort_buffer_size,"if (check_if_pq_applicable(trace, param, fs_info, num_rows_estimate,memory_available))",sql/filesort.cc:466,sql/filesort.cc:475,303,sql/filesort.cc:495
+sort_buffer_size,"if (!(*tempfile++ = new (thd->mem_root)
+ Unique(refpos_order_cmp, (void *)table->file,
+table->file->ref_length, thd->variables.sortbuff_size)))",sql/sql_delete.cc:971,sql/sql_delete.cc:974,304,sql/sql_delete.cc:975
+sort_buffer_size,  if ((memavl - sizeof(BUFFPEK)) / (sort_length + sizeof(char *)) > UINT_MAX32),storage/myisam/sort.cc:141,storage/myisam/sort.cc:142,305,storage/myisam/sort.cc:145
+max_user_connections,"if (global_system_variables.max_user_connections &&
+!uc->user_resources.user_conn &&
+global_system_variables.max_user_connections < (uint)uc->connections &&
+!thd->is_admin_connection())",sql/sql_connect.cc:186,sql/sql_connect.cc:190,306,sql/sql_connect.cc:195
+max_user_connections, if (m_table->s->fields >= m_table_schema->max_user_connections_idx()),sql/auth/acl_table_user.cc:1526,sql/auth/acl_table_user.cc:1527,307,
+max_user_connections," if ((uc = thd->get_user_connect()) &&
+        (uc->user_resources.conn_per_hour || uc->user_resources.user_conn ||
+         global_system_variables.max_user_connections) &&
+        check_for_max_user_connections(thd, uc)) ",sql/auth/sql_authentication.cc:3613,sql/auth/sql_authentication.cc:3617,308,sql/auth/sql_authentication.cc:3620
+"back_log,max_connections",if (back_log == 0 && (back_log = max_connections) > 65535) ,sql/mysqld.cc:4735,sql/mysqld.cc:4735,309,sql/mysqld.cc:4737
+bulk_insert_buffer_size, if (num_keys == 0 || num_keys * MI_MIN_SIZE_BULK_INSERT_TREE > cache_size),storage/myisam/mi_write.cc:887,storage/myisam/mi_write.cc:888,310,storage/myisam/mi_write.cc:890
+bulk_insert_buffer_size,if (rows && rows * total_keylength < cache_size),storage/myisam/mi_write.cc:890,storage/myisam/mi_write.cc:891,311,storage/myisam/mi_write.cc:893
+check_proxy_users,if (!find_any) ,sql/auth/sql_auth_cache.cc:1209,sql/auth/sql_auth_cache.cc:1213,312,sql/auth/sql_auth_cache.cc:1218
+check_proxy_users,"if ((!check_proxy_users) && acl_user &&
+        !*mpvio.auth_info.authenticated_as) ",sql/auth/sql_authentication.cc:3361,sql/auth/sql_authentication.cc:3366,313,sql/auth/sql_authentication.cc:3375
+concurrent_insert,if (using_concurrent_insert),mysys/thr_lock.cc:702,mysys/thr_lock.cc:707,314,mysys/thr_lock.cc:716
+concurrent_insert, if (myisam_concurrent_insert) ,storage/myisam/mi_open.cc:510,storage/myisam/mi_open.cc:511,315,storage/myisam/mi_open.cc:527
+concurrent_insert,if (share->concurrent_insert),storage/myisam/ft_boolean_search.cc:444,storage/myisam/ft_boolean_search.cc:445,316,storage/myisam/ft_boolean_search.cc:446
+concurrent_insert,if (share->concurrent_insert),storage/myisam/ft_nlq_search.cc:135,storage/myisam/ft_nlq_search.cc:136,317,storage/myisam/ft_nlq_search.cc:137
+concurrent_insert,if (share->concurrent_insert),storage/myisam/ft_nlq_search.cc:181,storage/myisam/ft_nlq_search.cc:182,318,storage/myisam/ft_nlq_search.cc:184
+concurrent_insert,if (info->s->concurrent_insert) ,storage/myisam/mi_dynrec.cc:172,storage/myisam/mi_dynrec.cc:172,319,storage/myisam/mi_dynrec.cc:181
+event_scheduler, if (opt_event_scheduler == EVENTS_DISABLED),sql/events.cc:1091,sql/events.cc:1092,320,sql/events.cc:1094
+explain_format,if (explain_thd->lex->explain_format->is_tree()) ,sql/opt_explain.cc:1827,sql/opt_explain.cc:1829,321,sql/opt_explain.cc:1843
+explain_format, if (lex->explain_format->is_tree()),sql/opt_explain.cc:2152,sql/opt_explain.cc:2153,322,sql/opt_explain.cc:2186
+explain_format, switch (m_format),sql/parse_tree_nodes.cc:3084,,323,
+explain_format,if (lex->explain_format == nullptr),sql/parse_tree_nodes.cc:3102,sql/parse_tree_nodes.cc:3102,324,sql/parse_tree_nodes.cc:3104
+explain_format,if (fmt->begin_context(CTX_UNION)),sql/sql_union.cc:1019,sql/sql_union.cc:1019,325,
+flush, if (flush) ,storage/innobase/os/os0file.cc:5530,storage/innobase/os/os0file.cc:5531,326,storage/innobase/os/os0file.cc:5534
+flush,if (flush && os_fsync_threshold != 0),storage/innobase/os/os0file.cc:5611,storage/innobase/os/os0file.cc:5612,327,storage/innobase/os/os0file.cc:5629
+flush,if (flush),storage/innobase/os/os0file.cc:5644,storage/innobase/os/os0file.cc:5645,328,storage/innobase/os/os0file.cc:5648
+flush,if (flush) ,storage/innobase/fil/fil0fil.cc:5295,storage/innobase/fil/fil0fil.cc:5296,329,
+flush,if (!flush) ,storage/innobase/buf/buf0lru.cc:499,storage/innobase/buf/buf0lru.cc:500,330,storage/innobase/buf/buf0lru.cc:509
+flush,if (flush) ,storage/innobase/buf/buf0lru.cc:599,storage/innobase/buf/buf0lru.cc:604,331,storage/innobase/buf/buf0lru.cc:606
+flush,if (flush),storage/innobase/buf/buf0lru.cc:624,storage/innobase/buf/buf0lru.cc:625,332,storage/innobase/buf/buf0lru.cc:629
+flush, if (flush) ,storage/innobase/buf/buf0flu.cc:304,storage/innobase/buf/buf0flu.cc:307,333,storage/innobase/buf/buf0flu.cc:372
+flush, if (flush) ,storage/innobase/arch/arch0log.cc:58,storage/innobase/arch/arch0log.cc:59,334,
+flush_time,if (flush_time) ,sql/sql_manager.cc:7,sql/sql_manager.cc:8,335,sql/sql_manager.cc:5
+flush_time,if (flush_time && flush_time != ~(ulong)0L) ,sql/sql_manager.cc:09,sql/sql_manager.cc:10,336,
+"ft_min_word_len,ft_max_word_len","if (((length >= ft_min_word_len &&
+!is_stopword((char *)word->pos, word->len)) ||param->trunc) &&length < ft_max_word_len) ",storage/myisam/ft_parser.cc:89,storage/myisam/ft_parser.cc:93,337,storage/myisam/ft_parser.cc:99
+"ft_min_word_len,ft_max_word_len","if (skip_stopwords == false ||
+        (length >= ft_min_word_len && length < ft_max_word_len &&
+         !is_stopword((char *)word->pos, word->len)))",storage/myisam/ft_parser.cc:43,storage/myisam/ft_parser.cc:45,338,storage/myisam/ft_parser.cc:49
+"log_output,slow_query_log"," if ((options & REFRESH_SLOW_LOG) && opt_slow_log &&
+      (log_output_options & LOG_FILE))",sql/sql_reload.cc:201,sql/sql_reload.cc:203,339,
+slow_query_log, if (thd->enable_slow_log && opt_slow_log) ,sql/log.cc:1614,sql/log.cc:1615,340,sql/log.cc:1628
+slow_query_log, if (opt_slow_log && query_logger.reopen_log_file(QUERY_LOG_SLOW)),sql/mysqld.cc:6235,sql/mysqld.cc:6236,341,
+slow_query_log,"  if ((opt_log_slow_admin_statements || opt_log_queries_not_using_indexes ||
+       opt_log_slow_slave_statements) &&
+      !opt_slow_log)",sql/mysqld.cc:10230,sql/mysqld.cc:10233,342,
+"slow_query_log,general_log","if ((thd->sp_runtime_ctx == nullptr) &&
+      (general || opt_slow_log || opt_bin_log)) ",,,343,
+generated_random_password_length,if (length > 255),sql/auth/sql_user.cc:918,sql/auth/sql_user.cc:918,344,
+group_concat_max_len,if (result->length() > item->group_concat_max_len),sql/item_sum.cc:4100,sql/item_sum.cc:4101,345,sql/item_sum.cc:4126
+group_concat_max_len,if (group_concat_max_len < thd->variables.group_concat_max_len) {,sql/item_sum.cc:4445,sql/item_sum.cc:4451,346,sql/item_sum.cc:4456
+group_concat_max_len,if (length > max_length),sql/field.cc:6950,sql/field.cc:6951,347,sql/field.cc:6956
+group_concat_max_len, if (max_characters > CONVERT_IF_BIGGER_TO_BLOB 512),sql/item_sum.cc:4297,sql/item_sum.cc:4298,348,sql/item_sum.cc:4302
+host_cache_size, if (table_def_init() | hostname_cache_init(host_cache_size)),sql/mysqld.cc:5598,sql/mysqld.cc:5599,349,
+"host_cache_size,max_connections","if (!host_cache_size_specified &&
+(host_cache_size = 128 + max_connections) > 628 &&(host_cache_size = 628 + ((max_connections - 500) / 20)) > 2000)",sql/mysqld.cc:4729,sql/mysqld.cc:4732,350,
+keep_files_on_create, if (thd->variables.keep_files_on_create),sql/sql_table.cc:8724,sql/sql_table.cc:8725,351,
+key_cache_block_size,if (block_length > keycache->key_cache_block_size || offset),mysys/mf_keycache.cc:2171,mysys/mf_keycache.cc:2172,352,
+key_cache_block_size,"if (!(block->status & BLOCK_ERROR) &&
+          ((page_st == PAGE_TO_BE_READ &&
+            (offset || read_length < keycache->key_cache_block_size)) ||
+           (page_st == PAGE_WAIT_TO_BE_READ))) ",mysys/mf_keycache.cc:2637,mysys/mf_keycache.cc:2641,353,
+key_cache_block_size,"if ((block->status & BLOCK_CHANGED) &&
+            (!offset && read_length >= keycache->key_cache_block_size))",mysys/mf_keycache.cc:2711,mysys/mf_keycache.cc:2712,354,mysys/mf_keycache.cc:2714
+local_infile,if (using_opt_local_infile),client/mysql.cc:4627,client/mysql.cc:4628,355,
+local_infile,if (!(options->local_infile_init && options->local_infile_read &&options->local_infile_end && options->local_infile_error)),libmysql/libmysql.cc:432,libmysql/libmysql.cc:435,356,
+local_infile," if ((*options->local_infile_init)(&li_ptr, net_filename,
+                                    options->local_infile_userdata))",libmysql/libmysql.cc:447,libmysql/libmysql.cc:448,357,libmysql/libmysql.cc:460
+local_infile,"if (!thd->get_protocol()->has_client_capability(CLIENT_LOCAL_FILES) ||
+        !opt_local_infile)",sql/sql_load.cc:2118,sql/sql_load.cc:2119,358,sql/sql_load.cc:2124
+"log_slow_admin_statements,log_queries_not_using_indexes,slow_query_log","if ((opt_log_slow_admin_statements || opt_log_queries_not_using_indexes ||
+       opt_log_slow_slave_statements) &&
+      !opt_slow_log)",sql/mysqld.cc:10230,sql/mysqld.cc:10233,359,
+log_raw,  if (opt_general_log_raw || thd->rewritten_query().length() == 0),sql/log_event.cc:4930,sql/log_event.cc:4931,360,sql/log_event.cc:4934
+log_raw, if (opt_general_log_raw),sql/sql_parse.cc:1810,sql/sql_parse.cc:1811,361,
+log_raw,if (!(opt_general_log_raw || thd->slave_thread)) ,sql/sql_parse.cc:4928,sql/sql_parse.cc:4929,362,
+log_slow_extra,if (opt_log_slow_extra) ,/sql/log_event.cc:4928,/sql/log_event.cc:4929,363,
+log_slow_extra,if (opt_log_slow_extra) ,sql/sql_parse.cc:1532,sql/sql_parse.cc:1533,364,
+log_syslog,if (log_syslog_enabled) ,components/logging/log_sink_syseventlog.cc:188,components/logging/log_sink_syseventlog.cc:189,365,components/logging/log_sink_syseventlog.cc:194
+log_syslog,if (log_syslog_enabled) ,components/logging/log_sink_syseventlog.cc:211,components/logging/log_sink_syseventlog.cc:211,366,components/logging/log_sink_syseventlog.cc:213
+log_syslog, if (!log_syslog_enabled),components/logging/log_sink_syseventlog.cc:744,components/logging/log_sink_syseventlog.cc:744,367,components/logging/log_sink_syseventlog.cc:746
+low_priority_updates, if (global_system_variables.low_priority_updates),sql/mysqld.cc:10255,sql/mysqld.cc:10256,368,
+low_priority_updates,"if (thd->variables.low_priority_updates &&
+             mdl_request->type == MDL_SHARED_WRITE &&
+             (table_list->lock_descriptor().type == TL_WRITE_DEFAULT ||
+              table_list->lock_descriptor().type ==
+                  TL_WRITE_CONCURRENT_DEFAULT)) ",sql/sql_base.cc:2601,sql/sql_base.cc:2614,369,
+lower_case_table_names,if (lower_case_table_names == 2),sql/dd_sql_view.cc:285,sql/dd_sql_view.cc:286,370,
+lower_case_table_names,if (lower_case_table_names == 2),sql/events.cc:1152,sql/events.cc:1154,371,
+lower_case_table_names,if (lower_case_table_names == 2) ,sql/events.cc:711,sql/events.cc:712,372,
+lower_case_table_names,if (lower_case_table_names != 2 || (file->ha_table_flags() & HA_FILE_BASED)),sql/handler.cc:2484,sql/handler.cc:2485,373,sql/handler.cc:2487
+lower_case_table_names,if (lower_case_table_names == 2) ,sql/item_func.cc:8438,sql/item_func.cc:8439,374,
+lower_case_table_names,"if (lower_case_table_names == 1 ||
+      (lower_case_table_names == 2 && !alias_name_used())) ",sql/item.cc:2845,/sql/item.cc:2847,375,

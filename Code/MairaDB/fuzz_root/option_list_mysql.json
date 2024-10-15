@@ -1,0 +1,313 @@
+{
+    "optionList": {
+        "1": {
+            "value": "OFF",
+            "key": "innodb_api_enable_binlog",
+            "constraint": "BOOL"
+        },
+        "2": {
+            "value": "OFF",
+            "key": "innodb_disable_sort_file_cache",
+            "constraint": "BOOL"
+        },
+        "3": {
+            "value": "0",
+            "key": "max_execution_time",
+            "constraint": "NUM[UINT,0,4294967295,]"
+        },
+        "4": {
+            "value": "262144",
+            "key": "read_rnd_buffer_size",
+            "constraint": "NUM[INT,1,2147483647,]"
+        },
+        "5": {
+            "value": "32768",
+            "key": "binlog_cache_size",
+            "constraint": "NUM[ULONGLONG,4096,18446744073709547520,]"
+        },
+        "6": {
+            "value": "ON",
+            "key": "innodb_doublewrite",
+            "constraint": "ENUM[OFF,DETECT_AND_RECOVER,DETECT_ONLY]"
+        },
+        "7": {
+            "value": "16777216",
+            "key": "max_heap_table_size",
+            "constraint": "NUM[ULONGLONG,16384,18446744073709550592,]"
+        },
+        "8": {
+            "value": "262144",
+            "key": "sort_buffer_size",
+            "constraint": "NUM[ULONGLONG,32768,18446744073709551615,]"
+        },
+        "9": {
+            "constraint": "NUM[ULONGLONG,4096,18446744073709547520,]",
+            "value": "32768",
+            "key": "binlog_stmt_cache_size"
+        },
+        "10": {
+            "value": "ON",
+            "key": "innodb_extend_and_initialize",
+            "constraint": "BOOL"
+        },
+        "11": {
+            "value": "18446744073709551615",
+            "key": "max_join_size",
+            "constraint": "NUM[ULONGLONG,1,18446744073709551615,]"
+        },
+        "12": {
+            "value": "OFF",
+            "key": "innodb_undo_log_encrypt",
+            "constraint": "BOOL"
+        },
+        "13": {
+            "value": "0",
+            "key": "innodb_flush_neighbors",
+            "constraint": "ENUM[1,2]"
+        },
+        "14": {
+            "value": "4096",
+            "key": "max_length_for_sort_data",
+            "constraint": "NUM[INT,4,8388608,]"
+        },
+        "15": {
+            "value": "nulls_equal",
+            "key": "innodb_stats_method",
+            "constraint": "ENUM[nulls_unequal,nulls_ignored]"
+        },
+        "16": {
+            "value": "ON",
+            "key": "innodb_buffer_pool_dump_at_shutdown",
+            "constraint": "BOOL"
+        },
+        "17": {
+            "value": "20000000",
+            "key": "histogram_generation_max_mem_size",
+            "constraint": "NUM[ULONGLONG,1000000,18446744073709551615,]"
+        },
+        "18": {
+            "value": "65536",
+            "key": "max_points_in_geometry",
+            "constraint": "NUM[INT,3,1048576,]"
+        },
+        "19": {
+            "value": "16777216",
+            "key": "tmp_table_size",
+            "constraint": "NUM[ULONGLONG,1024,18446744073709551615,]"
+        },
+        "20": {
+            "value": "OFF",
+            "key": "innodb_buffer_pool_dump_now",
+            "constraint": "BOOL"
+        },
+        "21": {
+            "constraint": "NUM[INT,0,4194304,]",
+            "value": "16382",
+            "key": "max_prepared_stmt_count"
+        },
+        "22": {
+            "value": "1073741824",
+            "key": "temptable_max_ram",
+            "constraint": "NUM[ULONGLONG,2097152,18446744073709551615,]"
+        },
+        "23": {
+            "value": "ON",
+            "key": "innodb_buffer_pool_in_core_file",
+            "constraint": "BOOL"
+        },
+        "24": {
+            "value": "28800",
+            "key": "interactive_timeout",
+            "constraint": "NUM[INT,1,31536000,]"
+        },
+        "25": {
+            "value": "1024",
+            "key": "max_sort_length",
+            "constraint": "NUM[INT,4,8388608,]"
+        },
+        "26": {
+            "value": "8192",
+            "key": "transaction_alloc_block_size",
+            "constraint": "NUM[INT,1024,131072,]"
+        },
+        "27": {
+            "key": "innodb_buffer_pool_load_abort",
+            "constraint": "BOOL",
+            "value": "OFF"
+        },
+        "28": {
+            "value": "262144",
+            "key": "join_buffer_size",
+            "constraint": "NUM[ULONGLONG,128,18446744073709551488,]"
+        },
+        "29": {
+            "value": "0",
+            "key": "max_user_connections",
+            "constraint": "NUM[UINT,0,4294967295,]"
+        },
+        "30": {
+            "value": "640962",
+            "key": "transaction_prealloc_size",
+            "constraint": "NUM[INT,1024,131072,]"
+        },
+        "31": {
+            "value": "ON",
+            "key": "innodb_buffer_pool_load_at_startup",
+            "constraint": "BOOL"
+        },
+        "32": {
+            "value": "300",
+            "key": "key_cache_age_threshold",
+            "constraint": "NUM[ULONGLONG,100,18446744073709551516,]"
+        },
+        "33": {
+            "value": "62",
+            "key": "optimizer_search_depth",
+            "constraint": "NUM[INT,0,62,]"
+        },
+        "34": {
+            "value": "OFF",
+            "key": "innodb_buffer_pool_load_now",
+            "constraint": "BOOL"
+        },
+        "35": {
+            "value": "OFF",
+            "key": "transaction_read_only",
+            "constraint": "ENUM[OFF]"
+        },
+        "36": {
+            "value": "1024",
+            "key": "key_cache_block_size",
+            "constraint": "NUM[INT,512,16384,]"
+        },
+        "37": {
+            "value": "1048576",
+            "key": "optimizer_trace_max_mem_size",
+            "constraint": "NUM[LONG,0,4294967295,]"
+        },
+        "38": {
+            "value": "ON",
+            "key": "innodb_undo_log_truncate",
+            "constraint": "BOOL"
+        },
+        "39": {
+            "value": "100",
+            "key": "key_cache_division_limit",
+            "constraint": "NUM[INT,1,100,]"
+        },
+        "40": {
+            "value": "100",
+            "key": "preload_buffer_size",
+            "constraint": "NUM[INT,1,100,]"
+        },
+        "41": {
+            "value": "32768",
+            "key": "preload_buffer_size",
+            "constraint": "NUM[LONG,1024,1073741824,]"
+        },
+        "42": {
+            "value": "1",
+            "key": "updatable_views_with_limit",
+            "constraint": "BOOL"
+        },
+        "43": {
+            "value": "all",
+            "key": "innodb_change_buffering",
+            "constraint": "ENUM[none,inserts,deletes,changes,purges,allLONG]"
+        },
+        "44": {
+            "value": "50",
+            "key": "innodb_lock_wait_timeout",
+            "constraint": "NUM[LONG,1,1073741824,]"
+        },
+        "45": {
+            "value": "8192",
+            "key": "query_alloc_block_size",
+            "constraint": "NUM[LONG,1024,4294966272,]"
+        },
+        "46": {
+            "value": "ON",
+            "key": "innodb_use_native_aio",
+            "constraint": "BOOL"
+        },
+        "47": {
+            "value": "ON",
+            "key": "innodb_log_compressed_pages",
+            "constraint": "BOOL"
+        },
+        "48": {
+            "value": "8192",
+            "key": "query_prealloc_size",
+            "constraint": "NUM[ULONGLONG,8192,18446744073709550592,]"
+        },
+        "49": {
+            "value": "ON",
+            "key": "innodb_validate_tablespace_paths",
+            "constraint": "BOOL"
+        },
+        "50": {
+            "value": "10",
+            "key": "connect_timeout",
+            "constraint": "NUM[INT,2,31536000,]"
+        },
+        "51": {
+            "value": "ON",
+            "key": "innodb_log_writer_threads",
+            "constraint": "BOOL"
+        },
+        "52": {
+            "value": "OFF",
+            "key": "innodb_random_read_ahead",
+            "constraint": "BOOL"
+        },
+        "53": {
+            "value": "28800",
+            "key": "wait_timeout",
+            "constraint": "NUM[INT,1,31536000,]"
+        },
+        "54": {
+            "value": "ON",
+            "key": "innodb_deadlock_detect",
+            "constraint": "BOOL"
+        },
+        "55": {
+            "value": "67108864",
+            "key": "max_allowed_packet",
+            "constraint": "NUM[UINT,1024,1073741824,]"
+        },
+        "56": {
+            "value": "4096",
+            "key": "range_alloc_block_size",
+            "constraint": "NUM[ULONGLONG,4096,18446744073709550592,]"
+        },
+        "57": {
+            "value": "OFF",
+            "key": "innodb_dedicated_server",
+            "constraint": "BOOL"
+        },
+        "58": {
+            "value": "151",
+            "key": "max_connections",
+            "constraint": "NUM[INT,5,100000,]"
+        },
+        "59": {
+            "value": "8388608",
+            "key": "range_optimizer_max_mem_size",
+            "constraint": "NUM[ULONGLONG,0,18446744073709551615,]"
+        },
+        "60": {
+            "value": "1024",
+            "key": "max_error_coun",
+            "constraint": "NUM[INT,0,65535,]"
+        },
+        "61": {
+            "value": "131072",
+            "key": "read_buffer_size",
+            "constraint": "NUM[UINT,8192,2147479552,]"
+        }
+    },
+    "format": "$key = $value",
+    "operator": " = ",
+    "change_conf": "SET global",
+    "endCommand": ";\n"
+}

@@ -1,0 +1,5 @@
+CREATE TABLE v0 ( v1 VARCHAR ( 6 ) ) ;
+ INSERT INTO v0 ( v1 , v1 , v1 ) VALUES ( 127 , -2147483648 , 255 ) , ( 27 ^ 22 , 'x' ) ;
+ UPDATE v0 SET v1 = ( SELECT LAG ( ( v1 = v1 AND 0 ) ) OVER ( ORDER BY v1 ) ) ORDER BY STDDEV_POP ( ) ;
+ SELECT FIRST_VALUE ( v1 ) FROM v0 ORDER BY v1 * 50 ;
+ 

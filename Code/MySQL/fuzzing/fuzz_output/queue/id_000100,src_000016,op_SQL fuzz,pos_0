@@ -1,0 +1,5 @@
+CREATE TABLE v0 ( v1 VARCHAR ( 8 ) ) ;
+ INSERT INTO v0 ( v1 , v1 , v1 ) VALUES ( 45 , 81 , 35 ) , ( 73 ^ 255 , 'x' ) ;
+ SELECT 'x' - 'x' AS v2 FROM v0 AS v3 , v0 AS v4 NATURAL JOIN v0 NATURAL JOIN v0 ORDER BY MAX ( ) ;
+ SELECT BIT_XOR ( v1 ) FROM v0 ORDER BY v1 * 127 ;
+ 

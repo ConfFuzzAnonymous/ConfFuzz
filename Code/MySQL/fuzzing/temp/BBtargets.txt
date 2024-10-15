@@ -1,0 +1,4 @@
+binlog.cc:1050
+mysqld.cc:7337
+mi_write.cc:908
+sql_plugin.cc:1191

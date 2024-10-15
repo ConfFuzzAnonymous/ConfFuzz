@@ -1,0 +1,5 @@
+CREATE TABLE v0 ( v1 VARCHAR ( 80 ) ) ;
+ INSERT INTO v0 ( v1 , v1 , v1 ) VALUES ( 8 , 0 , 127 ) , ( 2 ^ -32768 , 'x' ) ;
+ CREATE TABLE v2 ( v3 INT UNIQUE ) ;
+ SELECT DENSE_RANK ( v1 ) FROM v0 ORDER BY v1 * 22 ;
+ 

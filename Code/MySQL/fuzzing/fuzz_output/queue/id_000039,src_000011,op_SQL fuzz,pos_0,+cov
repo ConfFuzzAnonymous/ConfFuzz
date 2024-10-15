@@ -1,0 +1,5 @@
+CREATE TABLE v0 ( v1 INTEGER , v2 INTEGER , v3 INTEGER ) ;
+ INSERT INTO v0 VALUES ( -1 , 71 , ( 'x' / 8 ) ) ;
+ INSERT INTO v0 VALUES ( 35 , 0 , 37 ) ;
+ SELECT v3 , LAST_VALUE ( v2 ) OVER win1 FROM v0 WINDOW v4 AS ( ORDER BY v3 ) ;
+ 

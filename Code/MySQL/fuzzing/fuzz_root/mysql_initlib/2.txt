@@ -1,0 +1,5 @@
+CREATE TABLE t1 (a int , b longtext);
+DELETE FROM t1 WHERE a=1 or a=5;
+INSERT INTO t1 SET b=repeat('a',600);
+CHECK TABLE t1 EXTENDED;
+UPDATE t1 SET b=repeat('a', 800) where a=10;

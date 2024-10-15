@@ -1,0 +1,5 @@
+CREATE TABLE v0 ( v1 VARCHAR ( 23 ) ) ;
+ INSERT INTO v0 ( v1 , v1 , v1 ) VALUES ( NULL ) , ( -128 ) , ( NULL ) , ( NULL ) ;
+ SELECT 87 AS v2 FROM v0 AS v3 , v0 AS v4 NATURAL JOIN v0 NATURAL JOIN v0 ORDER BY LAG ( ) ;
+ SELECT LAG ( v1 ) FROM v0 ORDER BY v1 * 35 ;
+ 

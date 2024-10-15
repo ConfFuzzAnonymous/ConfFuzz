@@ -1,0 +1,5 @@
+CREATE TABLE v0 ( v1 VARCHAR ( -1 ) ) ;
+ INSERT INTO v0 ( v1 , v1 , v1 ) VALUES ( 96 , -128 , 30 ) , ( 92 ^ 0 , 'x' ) ;
+ SELECT 18 AS v4 FROM v0 AS v3 , v0 AS v2 NATURAL JOIN v0 NATURAL JOIN v0 ORDER BY BIT_XOR ( ) ;
+ SELECT DENSE_RANK ( 'x' ) AS v5 FROM v0 ORDER BY v1 * -128 ;
+ 

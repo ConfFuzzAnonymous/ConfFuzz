@@ -1,0 +1,2 @@
+CREATE TABLE a ( f1 varchar(1), KEY k5 (f1));
+CREATE VIEW v1 AS SELECT f1 from a;

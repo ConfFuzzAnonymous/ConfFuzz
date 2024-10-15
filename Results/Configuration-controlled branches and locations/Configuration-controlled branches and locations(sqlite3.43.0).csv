@@ -1,0 +1,70 @@
+Option,Statement,True'Branch,No.,False'Branch,No.
+analysis_limit,if( db->nAnalysisLimit ),sqlite3.c:116903,0,sqlite3.c:116913,1
+analysis_limit,"if( OptimizationEnabled(db, SQLITE_Stat4) && db->nAnalysisLimit==0 )",sqlite3.c:116931,2,sqlite3.c:116993,3
+auto_vacuum,if( rc==SQLITE_OK && (eAuto==1 || eAuto==2) ),sqlite3.c:136215,4,sqlite3.c:136200,5
+auto_vacuum,if( (pBt->btsFlags & BTS_PAGESIZE_FIXED)!=0 && (av ?1:0)!=pBt->autoVacuum ),sqlite3.c:72061,6,sqlite3.c:72063,7
+busy_timeout,if( ms>0 ),sqlite3.c:177148,8,sqlite3.c:177152,9
+busy_timeout,if( (count+1)*1000 > tmout ),sqlite3.c:177057,10,sqlite3.c:177059,11
+cache_size,if( mxCache<0 ),sqlite3.c:101480,12,sqlite3.c:101482,13
+cache_size,if( p->szCache>=0 ),sqlite3.c:53342,14,sqlite3.c:53344,15
+cache_size,if( pCache->nMax<3 ) ,sqlite3.c:54305,16,sqlite3.c:54306,17
+cache_size,if( szBulk > pCache->szAlloc*(i64)pCache->nMax ),sqlite3.c:54313,18,sqlite3.c:54315,19
+cache_size,if( n > 0x7fff0000 - pGroup->nMaxPage + pCache->nMax ),sqlite3.c:54822,20,sqlite3.c:54824,21
+cache_size,if( pCache->bPurgeable&& !pGroup->lru.pLruPrev->isAnchor&& ((pCache->nPage+1>=pCache->nMax) || pcache1UnderMemoryPressure(pCache)) ),sqlite3.c:54903,22,sqlite3.c:54902,23
+cache_spill, if( pgFlags & PAGER_CACHESPILL ),sqlite3.c:59536,24,sqlite3.c:59538,25
+case_sensitive_like,if( caseSensitive ),sqlite3.c:127880,26,sqlite3.c:127883,27
+cell_size_check,if( pBt->db->flags & SQLITE_CellSizeCk ),sqlite3.c:71116,28,sqlite3.c:71118,29
+checkpoint_fullfsync,if( (pgFlags & PAGER_CKPT_FULLFSYNC) && !pPager->noSync ),sqlite3.c:59533,30,sqlite3.c:59535,31
+defer_foreign_keys,if( db->flags & SQLITE_DeferFKs ),sqlite3.c:98332,32,sqlite3.c:98334,33
+defer_foreign_keys,if( !pFKey->isDeferred && !(pParse->db->flags & SQLITE_DeferFKs)&& !pParse->pToplevel&& !pParse->isMultiWrite),sqlite3.c:128800,34,sqlite3.c:128806,35
+defer_foreign_keys,if( (db->flags & SQLITE_DeferFKs)==0 ),sqlite3.c:129123,36,sqlite3.c:129130,37
+defer_foreign_keys," if( !pFKey->isDeferred && !(db->flags & SQLITE_DeferFKs)
+     && !pParse->pToplevel && !pParse->isMultiWrite )",sqlite3.c:129382,38,sqlite3.c:129385,39
+defer_foreign_keys,if( action==OE_Restrict && (db->flags & SQLITE_DeferFKs) ),sqlite3.c:129572,40,sqlite3.c:129574,41
+encoding,if( enc==SQLITE_UTF8 ),sqlite3.c:82239,42,sqlite3.c:82241,43
+encoding,if( enc!=SQLITE_UTF8 ),sqlite3.c:82706,44,sqlite3.c:82708,45
+encoding,if( enc==SQLITE_UTF16 ),sqlite3.c:90177,46,sqlite3.c:90180,47
+encoding,if( enc2==SQLITE_UTF16 || enc2==SQLITE_UTF16_ALIGNED ),sqlite3.c:178097,48,sqlite3.c:178099,49
+encoding,if( enc2<SQLITE_UTF8 || enc2>SQLITE_UTF16BE ),sqlite3.c:178100,50,sqlite3.c:178107,51
+encoding,if( (p->flags & MEM_Str)!=0 && enc!=SQLITE_UTF8 && pVal->enc!=SQLITE_UTF8 ),sqlite3.c:83053,52,sqlite3.c:83055,53
+encoding,if( pMem->enc==SQLITE_UTF8 ),sqlite3.c:33790,54,sqlite3.c:33808,55
+encoding,if( enc==SQLITE_UTF8 ),sqlite3.c:34808,56,sqlite3.c:34810,57
+foreign_keys,if( (db->flags&SQLITE_ForeignKeys) && pNew->u.tab.pFKey && pDflt ),sqlite3.c:113728,58,sqlite3.c:113731,59
+foreign_keys,if( (db->flags&SQLITE_ForeignKeys) && IsOrdinaryTable(pTab) ),sqlite3.c:129089,60,sqlite3.c:129088,61
+foreign_keys,if( pParse->db->flags&SQLITE_ForeignKeys && IsOrdinaryTable(pTab) ),sqlite3.c:129500,62,sqlite3.c:129527,63
+foreign_keys,if( pParse->db->flags&SQLITE_ForeignKeys ),sqlite3.c:129769,64,sqlite3.c:129768,65
+foreign_keys,if( db->flags & SQLITE_ForeignKeys ),sqlite3.c:131179,66,sqlite3.c:131190,67
+foreign_keys,if( (db->flags & (SQLITE_RecTriggers|SQLITE_ForeignKeys))==0 ),sqlite3.c:131820,68,sqlite3.c:131823,69
+fullfsync,if( pgFlags & PAGER_FULLFSYNC ),sqlite3.c:59524,70,sqlite3.c:59523,71
+ignore_check_constraints,if( pTab->pCheck && (db->flags & SQLITE_IgnoreChecks)==0 ),sqlite3.c:131668,72,sqlite3.c:131667,73
+ignore_check_constraints,if( pTab->pCheck && (db->flags & SQLITE_IgnoreChecks)==0 ),sqlite3.c:137387,74,sqlite3.c:137409,75
+journal_size_limit,if( doTruncate || iLimit==0 ),sqlite3.c:57345,76,sqlite3.c:57347,77
+journal_size_limit,if( iLimit>=-1 ),sqlite3.c:63331,78,sqlite3.c:63330,79
+legacy_alter_table,if( isLegacy==0 ),sqlite3.c:99297,80,sqlite3.c:99296,81
+legacy_alter_table,if( isLegacy==0 ),sqlite3.c:115108,82,sqlite3.c:115107,83
+locking_mode,if( !pPager->exclusiveMode || sqlite3JournalIsInMemory(pPager->sjfd) ),sqlite3.c:57721,84,sqlite3.c:57723,85
+locking_mode,if( !pPager->exclusiveMode ),sqlite3.c:57782,86,sqlite3.c:57826,87
+locking_mode,if( !pPager->exclusiveMode && (eOld & 5)==1 && (eMode & 1)==0 ),sqlite3.c:63271,88,sqlite3.c:63296,89
+locking_mode,if( pPager->exclusiveMode ),sqlite3.c:63449,90,sqlite3.c:63448,91
+page_size,"if( pBt->pageSize<512 || pBt->pageSize>SQLITE_MAX_PAGE_SIZE
+         || ((pBt->pageSize-1)&pBt->pageSize)!=0 )",sqlite3.c:71564,92,sqlite3.c:71582,93
+page_size,"if( pageSize>=512 && pageSize<=SQLITE_MAX_PAGE_SIZE &&
+        ((pageSize-1)&pageSize)==0 )",sqlite3.c:71944,94,sqlite3.c:71948,95
+page_size,if( ((pageSize-1)&pageSize)!=0|| pageSize>SQLITE_MAX_PAGE_SIZE|| pageSize<=256),sqlite3.c:72227,96,sqlite3.c:72229,97
+query_only,if( db->flags & SQLITE_QueryOnly ),sqlite3.c:94966,98,sqlite3.c:94970,99
+read_uncommitted,if( isWriteLock || 0==(db->flags&SQLITE_ReadUncommit) ),sqlite3.c:98950,100,sqlite3.c:98963,101
+read_uncommitted,if( (pBtree->sharable==0)|| (eLockType==READ_LOCK && (pBtree->db->flags & SQLITE_ReadUncommit))),sqlite3.c:69108,102,sqlite3.c:69116,103
+read_uncommitted,if( p->pgnoRoot==iRoot&& p->pBtree!=pBtree&& 0==(p->pBtree->db->flags & SQLITE_ReadUncommit)),sqlite3.c:69187,104,sqlite3.c:69185,105
+recursive_triggers,if( db->flags&SQLITE_RecTriggers ),sqlite3.c:131824,106,sqlite3.c:131827,107
+reverse_unordered_selects,if( pWInfo->pOrderBy==0 && (db->flags & SQLITE_ReverseOrder)!=0 ),sqlite3.c:164373,108,sqlite3.c:164375,109
+secure_delete,if( pPage->pBt->btsFlags & BTS_FAST_SECURE ),sqlite3.c:70854,110,sqlite3.c:70856,111
+secure_delete,if( newFlag>=0 ),sqlite3.c:72037,112,sqlite3.c:72036,113
+secure_delete,if( pBt->btsFlags & BTS_SECURE_DELETE ),sqlite3.c:75616,114,sqlite3.c:75612,115
+synchronous,if( db->aDb[i].safety_level!=PAGER_SYNCHRONOUS_OFF&& aMJNeeded[sqlite3PagerGetJournalMode(pPager)]&& sqlite3PagerIsMemdb(pPager)==0),sqlite3.c:85995,116,sqlite3.c:85997,117
+threads,if( newLimit>=0 ),sqlite3.c:178252,118,sqlite3.c:178259,119
+trusted_schema,if( (pDef->funcFlags & SQLITE_FUNC_DIRECT)!=0|| (pParse->db->flags & SQLITE_TrustedSchema)==0),sqlite3.c:107761,120,sqlite3.c:107750,121
+wal_checkpoint,if( eMode<SQLITE_CHECKPOINT_PASSIVE || eMode>SQLITE_CHECKPOINT_TRUNCATE ),sqlite3.c:177828,122,sqlite3.c:177831,123
+wal_checkpoint,if( rc==SQLITE_OK && eMode!=SQLITE_CHECKPOINT_PASSIVE ),sqlite3.c:65884,124,sqlite3.c:65882,125
+wal_checkpoint,if( eMode!=SQLITE_CHECKPOINT_PASSIVE ),sqlite3.c:67602,126,sqlite3.c:67601,127
+writable_schema,"if( (mask & SQLITE_WriteSchema)!=0&& sqlite3_stricmp(zRight, ""reset"")==0)",sqlite3.c:136564,128,sqlite3.c:136558,129
+writable_schema,if( db->flags & SQLITE_WriteSchema ),sqlite3.c:138382,130,sqlite3.c:138384,131

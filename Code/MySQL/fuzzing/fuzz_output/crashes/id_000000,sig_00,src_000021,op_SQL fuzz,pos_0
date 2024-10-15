@@ -1,0 +1,4 @@
+set session optimizer_switch='hypergraph_optimizer=on';CREATE TABLE IF NOT EXISTS v0 ( v1 INT NOT NULL CHECK ( v1 = 47 ) ) ;
+ ALTER TABLE v0 ADD COLUMN v2 CHAR ;
+ DROP TABLE v0 ;
+ SELECT min(1) WHERE sysdate()=(ROW(2,5)=ROW(1,3));

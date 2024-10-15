@@ -1,0 +1,5 @@
+CREATE TABLE v0 ( v1 VARCHAR ( 0 ) ) ;
+ INSERT INTO v0 ( v1 , v1 , v1 ) VALUES ( -1 , -1 , 0 ) , ( 8 ^ 71 , 'x' ) ;
+ SELECT 86 AS v2 FROM v0 AS v3 , v0 AS v4 , v0 ORDER BY LEAD ( ) ;
+ SELECT BIT_XOR ( v1 ) FROM v0 ORDER BY v1 * 62 ;
+ 

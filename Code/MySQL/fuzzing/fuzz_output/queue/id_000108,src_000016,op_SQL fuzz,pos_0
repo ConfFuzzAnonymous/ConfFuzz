@@ -1,0 +1,5 @@
+CREATE TABLE v0 ( v1 VARCHAR ( -1 ) ) ;
+ INSERT INTO v0 ( v1 , v1 , v1 ) VALUES ( 10 , -1 , 12 ) , ( -1 ^ 28 , 'x' ) ;
+ SELECT 255 AS v2 FROM NTILE ( 'x' ) , v0 NATURAL JOIN v0 ORDER BY VAR_SAMP ( ) ;
+ SELECT RANK ( v1 ) FROM v0 ORDER BY v1 * 5 ;
+ 
